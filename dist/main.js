@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _piece__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./piece */ \"./src/piece.js\");\n/* harmony import */ var _piece__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_piece__WEBPACK_IMPORTED_MODULE_0__);\n// console.log(\"webpack is working\")\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    const canvas = document.getElementById('game-canvas');\n    const ctx = canvas.getContext('2d');\n\n    // const GAME_WIDTH = 200;\n    // const GAME_HEIGHT = 400;\n    // const ROW = 20;\n    // const COL = 10;\n    // const SQUARE = 20;\n    // const EMPTY = \"WHITE\";\n\n    // let board = [];\n    // for (let row = 0; row < ROW; row += 1) {\n    //     board[row] = [];\n    //     for (let col = 0; col < COL; col += 1) {\n    //         board[row][col] = EMPTY;\n    //     }\n    // }\n\n    // let piece = new Piece;\n\n    // function draw() {\n    //     for (let row = 0; row < ROW; row += 1) {\n    //         for (let col = 0; col < COL; col += 1) {\n    //             piece.drawSquare(ctx, col, row, board[row][col])\n    //         }\n    //     }\n    // }\n\n    // draw();\n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _piece__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./piece */ \"./src/piece.js\");\n// console.log(\"webpack is working\")\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    const canvas = document.getElementById('game-canvas');\n    const ctx = canvas.getContext('2d');\n\n    const GAME_WIDTH = 200;\n    const GAME_HEIGHT = 400;\n    const ROW = 20;\n    const COL = 10;\n    const SQUARE = 20;\n    const EMPTY = \"WHITE\";\n\n    let board = [];\n    for (let row = 0; row < ROW; row += 1) {\n        board[row] = [];\n        for (let col = 0; col < COL; col += 1) {\n            board[row][col] = EMPTY;\n        }\n    }\n\n    let piece = new _piece__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\n\n    function draw() {\n        for (let row = 0; row < ROW; row += 1) {\n            for (let col = 0; col < COL; col += 1) {\n                piece.drawSquare(ctx, col, row, board[row][col])\n            }\n        }\n    }\n\n    draw();\n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -102,10 +102,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pie
 /*!**********************!*\
   !*** ./src/piece.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("// class Piece {\n//     constructor() {\n//         // this.gameWidth = game.gameWidth;\n        \n//         // this.pos = {\n//         //     x: game.gameWidth / 2 - this.width / 2,\n//         //     y: game.gameHeight - this.height,\n//         // }\n\n//         // const SQUARE = 20;\n//     }\n\n//     // draw() {\n\n//     // }\n\n//     drawSquare(ctx, x, y, color) {\n//         const SQUARE = 20;\n\n//         ctx.fillStyle = color;\n//         ctx.fillRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);\n\n//         ctx.strokeStyle = \"BLACK\"\n//         ctx.strokeRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);\n//     }\n\n//     // drop() {\n\n//     // }\n// }\n\n// export default Piece;\n\n//# sourceURL=webpack:///./src/piece.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Piece {\n    constructor() {\n        // this.gameWidth = game.gameWidth;\n        \n        // this.pos = {\n        //     x: game.gameWidth / 2 - this.width / 2,\n        //     y: game.gameHeight - this.height,\n        // }\n\n        // const SQUARE = 20;\n    }\n\n    // draw() {\n\n    // }\n\n    drawSquare(ctx, x, y, color) {\n        const SQUARE = 20;\n        \n        ctx.fillStyle = color;\n        ctx.fillRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);\n\n        ctx.strokeStyle = \"BLACK\"\n        ctx.strokeRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);\n    }\n\n    // drop() {\n\n    // }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Piece);\n\n//# sourceURL=webpack:///./src/piece.js?");
 
 /***/ })
 
