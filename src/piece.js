@@ -1,5 +1,5 @@
 class Piece {
-    constructor(gameWidth, gameHeight) {
+    constructor(game) {
         // this.gameWidth = game.gameWidth;
         
         // this.pos = {
@@ -9,14 +9,22 @@ class Piece {
 
         // const SQUARE = 20;
 
+        this.ctx = game.ctx;
+
+        this.gameWidth = game.gameWidth;
+        this.gameHeight = game.gameHeight;
+
         this.pos = {
             // x: 60,
-            x: gameWidth / 2 - 20,
+            x: this.gameWidth / 2 - 20,
             y: 0,
         }
     }
 
-    draw(ctx) {
+    draw() {
+        // ctx.fillStyle = '#000';
+        // ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
+
         const gamePieces = [
             [0, 0, 0],
             [1, 1, 1],
@@ -25,9 +33,9 @@ class Piece {
 
         gamePieces.forEach((row, y) => {
             row.forEach((value, x) => {
-                if (value !== 0) {
-                    ctx.fillStyle = 'red';
-                    ctx.fillRect(x * 20 + this.pos.x, y * 20, 20, 20)
+                if (value === 1) {
+                    this.ctx.fillStyle = 'red';
+                    this.ctx.fillRect(x * 20 + this.pos.x, y * 20, 20, 20)
                     // ctx.fillRect(x, y, 1, 1)
                 }
             })
@@ -46,8 +54,15 @@ class Piece {
         // ctx.strokeRect(x, y, 1, 1);
     }
 
-    // drop() {
+    // moveDown() {
+    //     this.pos.y++;
+    //     this.draw(this.ctx);
+    // }
 
+    // drop() {
+    //     // this.draw(ctx);
+    //     this.moveDown();
+    //     requestAnimationFrame(drop);
     // }
 }
 

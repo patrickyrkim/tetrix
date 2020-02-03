@@ -1,5 +1,6 @@
 // console.log("webpack is working")
 import Piece from './piece';
+import Game from './game';
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
@@ -24,9 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    let piece = new Piece(GAME_WIDTH, GAME_HEIGHT);
+    let game = new Game(GAME_WIDTH, GAME_HEIGHT, ctx);
 
-    function draw() {
+    // let piece = new Piece(GAME_WIDTH, GAME_HEIGHT);
+    let piece = new Piece(game);
+
+    function drawBoard() {
         for (let row = 0; row < ROW; row += 1) {
             for (let col = 0; col < COL; col += 1) {
                 piece.drawSquare(ctx, col, row, board[row][col])
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    draw();
-    piece.draw(ctx);
-
+    drawBoard();
+    piece.draw();
+    // piece.drop();
 });
