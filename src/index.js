@@ -5,10 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
 
+    // ctx.scale(20, 20);
+
     const GAME_WIDTH = 200;
     const GAME_HEIGHT = 400;
     const ROW = 20;
+    // const ROW = 1;
     const COL = 10;
+    // const COL = 0.5;
     const SQUARE = 20;
     const EMPTY = "WHITE";
 
@@ -20,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    let piece = new Piece;
+    let piece = new Piece(GAME_WIDTH, GAME_HEIGHT);
 
     function draw() {
         for (let row = 0; row < ROW; row += 1) {
@@ -31,5 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw();
+    piece.draw(ctx);
 
 });
