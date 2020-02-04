@@ -1,14 +1,11 @@
+const gamePieces = [
+    [0, 0, 0],
+    [1, 1, 1],
+    [0, 1, 0],
+]
+
 class Piece {
     constructor(game) {
-        // this.gameWidth = game.gameWidth;
-        
-        // this.pos = {
-        //     x: game.gameWidth / 2 - this.width / 2,
-        //     y: game.gameHeight - this.height,
-        // }
-
-        // const SQUARE = 20;
-
         this.ctx = game.ctx;
 
         this.gameWidth = game.gameWidth;
@@ -19,23 +16,19 @@ class Piece {
             x: this.gameWidth / 2 - 20,
             y: 0,
         }
+
+        this.gamePieces = gamePieces;
+
+        this.dropCounter = 0;
+        this.dropTime = 1000;
     }
 
     draw() {
-        // ctx.fillStyle = '#000';
-        // ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
-
-        const gamePieces = [
-            [0, 0, 0],
-            [1, 1, 1],
-            [0, 1, 0],
-        ]
-
-        gamePieces.forEach((row, y) => {
+        this.gamePieces.forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value === 1) {
                     this.ctx.fillStyle = 'red';
-                    this.ctx.fillRect(x * 20 + this.pos.x, y * 20, 20, 20)
+                    this.ctx.fillRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
                     // ctx.fillRect(x, y, 1, 1)
                 }
             })
@@ -54,16 +47,34 @@ class Piece {
         // ctx.strokeRect(x, y, 1, 1);
     }
 
-    // moveDown() {
-    //     this.pos.y++;
-    //     this.draw(this.ctx);
-    // }
+    moveLeft() {
+        this.pos.x -= 20;
+    }
 
-    // drop() {
-    //     // this.draw(ctx);
-    //     this.moveDown();
-    //     requestAnimationFrame(drop);
-    // }
+    moveRight() {
+        this.pos.x += 20;
+    }
+
+    moveDown() {
+        this.pos.y += 20;
+        this.dropCounter = 0;
+    }
+
+    rotateAction() {
+
+    }
+
+    rotatePiece() {
+
+    }
+
+    update(deltaTime) {
+        this.dropCounter += deltaTime;
+
+        if (this.dropCounter > this.dropTime) {
+            this.moveDown();
+        }
+    }
 }
 
 export default Piece;
