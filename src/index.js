@@ -12,36 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const GAME_WIDTH = 200;
     const GAME_HEIGHT = 400;
     const ROW = 20;
-    // const ROW = 1;
     const COL = 10;
-    // const COL = 0.5;
     const SQUARE = 20;
     const EMPTY = "WHITE";
 
     let game = new Game(GAME_WIDTH, GAME_HEIGHT, ctx);
     let piece = new Piece(game);
-
-    // console.log(game.createBoard());
-    // console.table(game.createBoard());
-
-    // game.drawPieceToBoard();
-
-    function drawPieceToBoard() {
-        piece.gamePieces.forEach((row, y) => {
-            row.forEach((value, x) => {
-                if (value === 1) {
-                    game.createBoard()[y + piece.pos.y][x + piece.pos.x] = value;
-                }
-            })
-        })
-    }
-
-    drawPieceToBoard();
-    // console.table(drawPieceToBoard());
-
-    // let board = new Board(GAME_WIDTH, GAME_HEIGHT);
-    // console.log(board.draw());
-    // console.table(board.draw());
 
     // let board = [];
     // for (let row = 0; row < ROW; row += 1) {

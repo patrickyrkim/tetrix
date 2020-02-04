@@ -18,6 +18,7 @@ class Piece {
         }
 
         this.gamePieces = gamePieces;
+        this.newPiece = null;
 
         this.dropCounter = 0;
         this.dropTime = 1000;
@@ -61,11 +62,18 @@ class Piece {
     }
 
     rotateAction() {
-
+        this.rotatePiece(this.gamePieces);
+        // this.rotatePiece(this.newPiece);
     }
 
-    rotatePiece() {
+    rotatePiece(pieceShape) {
+        for (let i = 0; i < pieceShape.length; i++) {
+            for (let j = 0; j < i; j++) {
+                [pieceShape[j][i], pieceShape[i][j]] = [pieceShape[i][j], pieceShape[j][i]];
+            }
+        }
 
+        pieceShape.forEach((row) => row.reverse());
     }
 
     update(deltaTime) {

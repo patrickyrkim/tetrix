@@ -20,27 +20,17 @@ class Game {
         this.board = new Board(this);
     }
 
-    createBoard() {
-        const newBoard = [];
-        let height = this.gameHeight;
-        while (height !== 0) {
-            newBoard.push(new Array(this.gameWidth).fill(0));
+    // createBoard() {
+    //     const newBoard = [];
+    //     let height = this.gameHeight;
+    //     while (height !== 0) {
+    //         newBoard.push(new Array(this.gameWidth).fill(0));
 
-            height -= 20;
-        }
-        return newBoard;
+    //         height -= 20;
+    //     }
+    //     return newBoard;
 
-        // this.board.draw();
-    }
-
-    // drawPieceToBoard() {
-    //     this.createBoard().forEach((row, y) => {
-    //         row.forEach((value, x) => {
-    //             if (value === 1) {
-    //                 this.board[y + this.piece.pos.y][x + this.piece.pos.x] = value;
-    //             }
-    //         })
-    //     })
+    //     // this.board.draw();
     // }
 } 
 
