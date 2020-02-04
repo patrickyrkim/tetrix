@@ -1,6 +1,7 @@
 // console.log("webpack is working")
 import Piece from './piece';
 import Game from './game';
+import Board from './board';
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
@@ -20,6 +21,27 @@ document.addEventListener("DOMContentLoaded", () => {
     let game = new Game(GAME_WIDTH, GAME_HEIGHT, ctx);
     let piece = new Piece(game);
 
+    // console.log(game.createBoard());
+    // console.table(game.createBoard());
+
+    // game.drawPieceToBoard();
+
+    function drawPieceToBoard() {
+        piece.gamePieces.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value === 1) {
+                    game.createBoard()[y + piece.pos.y][x + piece.pos.x] = value;
+                }
+            })
+        })
+    }
+
+    drawPieceToBoard();
+    // console.table(drawPieceToBoard());
+
+    // let board = new Board(GAME_WIDTH, GAME_HEIGHT);
+    // console.log(board.draw());
+    // console.table(board.draw());
 
     // let board = [];
     // for (let row = 0; row < ROW; row += 1) {
@@ -37,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //     }
     // }
 
-    function drawBoard() {
+    function initializeBoard() {
         ctx.fillStyle = "gray";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -60,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         piece.update(deltaTime);
 
-        drawBoard();
+        initializeBoard();
         requestAnimationFrame(update);
     }
 
@@ -76,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    // drawBoard();
+    // initializeBoard();
     // piece.draw();
     // piece.drop();
     update();
