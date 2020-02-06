@@ -16,22 +16,52 @@ class Game {
 
         // this.gamestate = GAMESTATE.MENU;
 
-        this.piece = new Piece(this);
         this.board = new Board(this);
+        this.piece = new Piece(this);
+
+        this.pieceColors = [
+            null, 
+            'red',
+            'orange',
+            'yellow',
+            'green',
+            'blue',
+            'purple',
+            'pink',
+        ]
+
+        let lastTime = 0;
+        const updateGame = (time = 0) => {
+            const deltaTime = time - lastTime;
+            lastTime = time;
+
+            this.piece.update(deltaTime);
+
+            this.draw();
+            requestAnimationFrame(updateGame);
+        }
+
+        updateGame();
     }
 
-    // createBoard() {
-    //     const newBoard = [];
-    //     let height = this.gameHeight;
-    //     while (height !== 0) {
-    //         newBoard.push(new Array(this.gameWidth).fill(0));
+    draw() {
+        this.ctx.fillStyle = 'gray';
+        this.ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
 
-    //         height -= 20;
-    //     }
-    //     return newBoard;
+        this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
+        this.drawPiece(this.piece.gamePieces, this.piece.pos);
+    }
 
-    //     // this.board.draw();
-    // }
+    drawPiece(piece, pos) {
+        piece.forEach((row, y) => {
+            row.forEach((val, x) => {
+                if (val !== 0) {
+                    this.ctx.fillStyle = 'red';
+                    this.ctx.fillRect(x + pos.x, y + pos.y, 1, 1);
+                }
+            })
+        })
+    }
 } 
 
 export default Game

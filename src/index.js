@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
 
-    // ctx.scale(20, 20);
+    ctx.scale(20, 20);
 
     const GAME_WIDTH = 200;
     const GAME_HEIGHT = 400;
@@ -18,47 +18,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let game = new Game(GAME_WIDTH, GAME_HEIGHT, ctx);
     let piece = new Piece(game);
-    // let board = new Board(game);
-    // console.table(board);
-    // console.table(board.newBoard);
 
-    // let board = [];
-    // for (let row = 0; row < ROW; row += 1) {
-    //     board[row] = [];
-    //     for (let col = 0; col < COL; col += 1) {
-    //         board[row][col] = EMPTY;
-    //     }
-    // }
+    // function initializeBoard() {
+    //     // ctx.fillStyle = "gray";
+    //     // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // function drawBoard() {
+    //     let initialBoard = [];
     //     for (let row = 0; row < ROW; row += 1) {
+    //         initialBoard[row] = [];
     //         for (let col = 0; col < COL; col += 1) {
-    //             piece.drawSquare(ctx, col, row, board[row][col])
+    //             initialBoard[row][col] = "black";
     //         }
     //     }
+
+    //     for (let row = 0; row < ROW; row += 1) {
+    //         for (let col = 0; col < COL; col += 1) {
+    //             piece.drawSquare(ctx, col, row, initialBoard[row][col])
+    //         }
+    //     }
+
+    //     // piece.unDraw();
+    //     piece.draw();
     // }
 
-    function initializeBoard() {
-        // ctx.fillStyle = "gray";
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        let initialBoard = [];
-        for (let row = 0; row < ROW; row += 1) {
-            initialBoard[row] = [];
-            for (let col = 0; col < COL; col += 1) {
-                initialBoard[row][col] = "black";
-            }
-        }
-
-        for (let row = 0; row < ROW; row += 1) {
-            for (let col = 0; col < COL; col += 1) {
-                piece.drawSquare(ctx, col, row, initialBoard[row][col])
-            }
-        }
-
-        // piece.unDraw();
-        piece.draw();
-    }
+    game.draw();
 
     // let dropCounter = 0;
     // let dropTime = 1000;
@@ -74,9 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
         //     dropCounter = 0;
         // }
 
+        piece.restart();
         piece.update(deltaTime);
 
-        initializeBoard();
+        // initializeBoard();
         requestAnimationFrame(update);
     }
 
@@ -94,8 +78,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    // initializeBoard();
-    // piece.draw();
-    // piece.drop();
     update();
 });

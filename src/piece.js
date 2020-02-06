@@ -1,8 +1,10 @@
-const gamePieces = [
-    [0, 0, 0],
-    [1, 1, 1],
-    [0, 1, 0],
-]
+// const gamePieces = [
+//     [0, 0, 0],
+//     [1, 1, 1],
+//     [0, 1, 0],
+// ]
+
+import { tetrisShapes } from './piece_shapes';
 
 class Piece {
     constructor(game) {
@@ -17,7 +19,10 @@ class Piece {
             y: 0,
         }
 
-        this.gamePieces = gamePieces;
+        const shapes = 'TIOJLZS';
+        this.gamePieces = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+
+        // this.gamePieces = gamePieces;
         this.newPiece = null;
 
         this.dropCounter = 0;
@@ -26,54 +31,61 @@ class Piece {
         this.board = game.board;
     }
 
-    draw() {
-        this.gamePieces.forEach((row, y) => {
-            row.forEach((value, x) => {
-                if (value === 1) {
-                    this.ctx.fillStyle = 'red';
-                    this.ctx.fillRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
-                    // this.ctx.fillRect(x, y, 1, 1);
-
-                    // this.ctx.strokeStyle = 'white';
-                    this.ctx.strokeStyle = 'black';
-                    this.ctx.strokeRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
-                    // this.ctx.strokeRect(x, y, 1, 1);
-                }
-            })
-        })
+    restart() {
+        const shapes = 'TIOJLZS';
+        this.newPiece = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+        this.pos.x = (Math.floor(this.board.newBoard[0] / 2)) - Math.floor(this.newPiece[0].length / 2);
+        this.pos.y = 0;
     }
 
-    unDraw() {
-        this.gamePieces.forEach((row, y) => {
-            row.forEach((value, x) => {
-                if (value === 1) {
-                    this.ctx.fillStyle = 'black';
-                    this.ctx.fillRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
-                    // ctx.fillRect(x, y, 1, 1)
+    // draw() {
+    //     this.gamePieces.forEach((row, y) => {
+    //         row.forEach((value, x) => {
+    //             if (value !== 0) {
+    //                 this.ctx.fillStyle = 'red';
+    //                 // this.ctx.fillRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
+    //                 this.ctx.fillRect(x, y, 1, 1);
 
-                    // this.ctx.strokeStyle = 'white';
-                    this.ctx.strokeStyle = 'gray';
-                    this.ctx.strokeRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
-                }
-            })
-        })
-    }
+    //                 // this.ctx.strokeStyle = 'black';
+    //                 // this.ctx.strokeRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
+    //                 // this.ctx.strokeRect(x, y, 1, 1);
+    //             }
+    //         })
+    //     })
+    // }
+
+    // unDraw() {
+    //     this.gamePieces.forEach((row, y) => {
+    //         row.forEach((value, x) => {
+    //             if (value !== 0) {
+    //                 this.ctx.fillStyle = 'black';
+    //                 this.ctx.fillRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
+    //                 // ctx.fillRect(x, y, 1, 1)
+
+    //                 // this.ctx.strokeStyle = 'white';
+    //                 this.ctx.strokeStyle = 'gray';
+    //                 this.ctx.strokeRect(x * 20 + this.pos.x, y * 20 + this.pos.y, 20, 20)
+    //             }
+    //         })
+    //     })
+    // }
 
     drawSquare(ctx, x, y, color) {
-        const SQUARE = 20;
+        // const SQUARE = 20;
         
         ctx.fillStyle = color;
-        ctx.fillRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);
-        // ctx.fillRect(x, y, 1, 1);
+        // ctx.fillRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);
+        ctx.fillRect(x, y, 1, 1);
 
         // ctx.strokeStyle = "BLACK";
         ctx.strokeStyle = "gray";
-        ctx.strokeRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);
-        // ctx.strokeRect(x, y, 1, 1);
+        // ctx.strokeRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);
+        ctx.strokeRect(x, y, 1, 1);
     }
 
     moveLeft() {
-        this.pos.x -= 20;
+        // this.pos.x -= 20;
+        this.pos.x -= 1;
 
         // if (this.detectCollision(-20, 0, this.gamePieces)) {
         //     this.pos.x -= 20;
@@ -81,7 +93,8 @@ class Piece {
     }
 
     moveRight() {
-        this.pos.x += 20;
+        // this.pos.x += 20;
+        this.pos.x += 1;
 
         // if (this.detectCollision(20, 0, this.gamePieces)) {
         //     this.pos.x += 20;
@@ -89,16 +102,12 @@ class Piece {
     }
 
     moveDown() {
-        this.pos.y += 20;
+        // this.pos.y += 20;
+        this.pos.y += 1;
         this.dropCounter = 0;
 
-        if (this.board.detectCollision()) {
-            // this.pos.y -= 20;
-        }
-
-        // if (!this.detectCollision(0, 20, this.gamePieces)) {
-        //     this.pos.y += 20;
-        //     this.dropCounter = 0;
+        // if (this.board.detectCollision()) {
+        //     this.pos.y -= 20;
         // }
     }
 
@@ -127,7 +136,7 @@ class Piece {
     detectCollision(x, y, piece) {
         for (let row = 0; row < piece.length; row += 1) {
             for (let col = 0; col < piece[row].length; col += 1) {
-                if (this.gamePieces[row][col] === 1) {
+                if (this.gamePieces[row][col] !== 0) {
                     continue;
                 }
 
