@@ -13,11 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const GAME_HEIGHT = 400;
     const ROW = 20;
     const COL = 10;
-    const SQUARE = 20;
-    const EMPTY = "WHITE";
+    // const SQUARE = 20;
+    // const EMPTY = "WHITE";
 
     let game = new Game(GAME_WIDTH, GAME_HEIGHT, ctx);
     let piece = new Piece(game);
+    // let board = new Board(game);
+    // console.table(board);
+    // console.table(board.newBoard);
 
     // let board = [];
     // for (let row = 0; row < ROW; row += 1) {
@@ -36,20 +39,35 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
 
     function initializeBoard() {
-        ctx.fillStyle = "gray";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // ctx.fillStyle = "gray";
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        let initialBoard = [];
+        for (let row = 0; row < ROW; row += 1) {
+            initialBoard[row] = [];
+            for (let col = 0; col < COL; col += 1) {
+                initialBoard[row][col] = "black";
+            }
+        }
+
+        for (let row = 0; row < ROW; row += 1) {
+            for (let col = 0; col < COL; col += 1) {
+                piece.drawSquare(ctx, col, row, initialBoard[row][col])
+            }
+        }
+
+        // piece.unDraw();
         piece.draw();
     }
 
-    let dropCounter = 0;
-    let dropTime = 1000;
+    // let dropCounter = 0;
+    // let dropTime = 1000;
     let currentTime = 0;
     function update(time = 0) {
         const deltaTime = time - currentTime;
         currentTime = time;
 
-        dropCounter += deltaTime;
+        // dropCounter += deltaTime;
 
         // if (dropCounter > dropTime) {
         //     piece.pos.y += 20;
@@ -71,6 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.moveDown();
         } else if (e.keyCode === 38) {
             piece.rotateAction();
+        } else if (e.keyCode === 32) {
+            piece.fastDrop();
         }
     })
 
