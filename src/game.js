@@ -34,6 +34,7 @@ class Game {
             requestAnimationFrame(update);
         }
         update();
+        this.updateScore(0);
     }
 
     draw() {
@@ -57,9 +58,10 @@ class Game {
         })
     }
 
-    // updateScore() {
-    //     document.getElementById('score').innerText = `Score: ${game.piece.score}`;
-    // }
+    updateScore(score) {
+        // document.getElementById('score').innerText = `Score: ${game.piece.score}`;
+        document.getElementById('score').innerText = `Score: ${score}`;
+    }
 }
 
 export default Game;

@@ -41,7 +41,7 @@ class Board {
     }
 
     clearFilledRow() {
-        let rowCount = 1;
+        let rowCounter = 1;
         let score = 0;
 
         loop1: 
@@ -59,8 +59,9 @@ class Board {
                 this.newBoard.unshift(row);
                 i += 1;
 
-                score += rowCount * 10;
+                score += rowCounter * 10;
             }
+            return score;
     }
 
     lockPieceOnBoard(piece) {

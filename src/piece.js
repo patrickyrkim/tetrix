@@ -42,6 +42,7 @@ class Piece {
             this.restart();
             this.score += this.board.clearFilledRow();
             // updateScore();
+            this.game.updateScore(this.score);
         }
 
         this.dropCounter = 0;
@@ -110,6 +111,7 @@ class Piece {
     restart() {
         const shapes = 'TIOJLZS';
         this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+        // this.shape = tetrisShapes(shapes[(Math.random() * shapes.length)]);
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
         this.pos.y = 0;
 
@@ -118,6 +120,7 @@ class Piece {
             this.board.clearRow();
             this.score = 0;
             // updateScore();
+            this.game.updateScore(this.score)
         }
     }
 
