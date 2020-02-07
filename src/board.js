@@ -18,8 +18,8 @@ class Board {
     detectCollision(piece) {
         const [shape, position] = [piece.shape, piece.pos];
 
-        for (let posY = 0; posY < shape.length; posY += 20) {
-            for (let posX = 0; posX < shape[posY].length; posX += 20) {
+        for (let posY = 0; posY < shape.length; ++posY) {
+            for (let posX = 0; posX < shape[posY].length; ++posX) {
                 let value = shape[posY][posX];
                 let xCollisionFactor = this.newBoard[posY + position.y];
                 let yCollisionFactor = this.newBoard[posY + position.y][posX + position.x];
@@ -30,20 +30,32 @@ class Board {
             }
         }
         return false;
+
+        // const [m, o] = [piece.shape, piece.pos];
+        // for (let y = 0; y < m.length; ++y) {
+        //     for (let x = 0; x < m[y].length; ++x) {
+        //         if (m[y][x] !== 0 &&
+        //             (this.newBoard[y + o.y] &&
+        //             this.newBoard[y + o.y][x + o.x]) !== 0) {
+        //                 return true;
+        //         }
+        //     }
+        // }
+        // return false;
     }
 
     clearRow() {
-            board.forEach((row) => row.fill(0));
+        this.newBoard.forEach((row) => row.fill(0));
     }
 
     clearFilledRow() {
-        let rowCounter = 1;
+        let rowCount = 1;
         let score = 0;
 
         loop1: 
             for (let i = this.newBoard.length - 1; i > 0; i -= 1) {
         // loop2:  
-                let boardRow = this.newBoard[j];
+                let boardRow = this.newBoard[i];
                 for (let j = 0; j < boardRow.length; j += 1) {
                     let value = this.newBoard[i][j];
                     if (value === 0) {

@@ -16,23 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const game = new Game(canvas);
 
     function updateScore() {
-        document.getElementById('score').innerText = game.piece.score;
+        document.getElementById('score').innerText = `Score: ${game.piece.score}`;
     }
 
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {
-            // move right
-            game.piece.moveRight();
-        } else if (e.keyCode === 39) {
-            // move left
             game.piece.moveLeft();
+        } else if (e.keyCode === 39) {
+            game.piece.moveRight();
         } else if (e.keyCode === 40) {
-            // move down
             game.piece.moveDown();
         } else if (e.keyCode === 38) {
-            // rotate
             game.piece.rotateAction();
-        }
+        } 
+        // else if (e.keyCode === 32) {
+        //     game.piece.fastDrop();
+        // }
     })
 
     updateScore();

@@ -6,7 +6,7 @@ class Piece {
         this.board = game.board;
         this.pos = {
             x: 0,
-            y: 0,
+            y: 0
         };
         this.shape = null;
         this.score = 0;
@@ -21,7 +21,7 @@ class Piece {
         this.pos.x -= 1;
 
         if (this.board.detectCollision(this)) {
-            this.pox.x += 1
+            this.pos.x += 1
         }
     }
 
@@ -29,7 +29,7 @@ class Piece {
         this.pos.x += 1;
 
         if (this.board.detectCollision(this)) {
-            this.pox.x -= 1
+            this.pos.x -= 1
         }
     }
 
@@ -37,18 +37,31 @@ class Piece {
         this.pos.y += 1;
 
         if (this.board.detectCollision(this)) {
-            this.pos.y += 1;
+            this.pos.y -= 1;
             this.board.lockPieceOnBoard(this);
             this.restart();
-            this.board.clearFilledRow();
-            updateScore();
+            this.score += this.board.clearFilledRow();
+            // updateScore();
         }
 
         this.dropCounter = 0;
     }
 
     fastDrop() {
-        this.dropTime = 0;
+        // this.dropTime = 0;
+        this.pos.y += (20 - this.shape.length);
+        // this.pos.y = 20
+
+        if (this.board.detectCollision(this)) {
+            this.pos.y -= 1;
+            this.board.lockPieceOnBoard(this);
+            this.restart();
+            this.score += this.board.clearFilledRow();
+            // updateScore();
+        }
+
+        this.dropCounter = 0;
+        // this.dropTime = 1000;
     }
 
     rotateAction() {
@@ -84,15 +97,16 @@ class Piece {
     }
 
     restart() {
-        const pieces = 'TIOJLZS';
-        this.shape = tetrisShapes(pieces[Math.floor(Math.random() * pieces.length)]);
+        const shapes = 'TIOJLZS';
+        this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
+        this.pos.y = 0;
 
         if (this.board.detectCollision(this)) {
             // this.board.forEach((row) => row.fill(0));
             this.board.clearRow();
             this.score = 0;
-            updateScore();
+            // updateScore();
         }
     }
 

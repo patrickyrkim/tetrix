@@ -51,11 +51,15 @@ class Game {
                 if (value !== 0) {
                     // this.ctx.fillStyle = 'red';
                     this.ctx.fillStyle = this.pieceColors[value];
-                    this.ctx.fillRect(j + adjustPos.j, i + adjustPos.i, 1, 1)
+                    this.ctx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
                 }
             })
         })
     }
+
+    // updateScore() {
+    //     document.getElementById('score').innerText = `Score: ${game.piece.score}`;
+    // }
 }
 
 export default Game;
