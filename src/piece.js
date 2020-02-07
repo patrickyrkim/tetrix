@@ -66,20 +66,21 @@ class Piece {
 
     rotateAction() {
         const posX = this.pos.x;
-        let offset = 1;
+        let collisionFactor = 1;
         this.rotateShape(this.shape);
 
         while (this.board.detectCollision(this)) {
-            this.pos.x += offset;
+            this.pos.x += collisionFactor;
             
-            if (offset > 0) {
-                offset = -(offset + 1);
+            if (collisionFactor > 0) {
+                collisionFactor = -(collisionFactor + 1);
             } else {
-                offset = -(offset + (-1));
+                collisionFactor = -(collisionFactor + (-1));
             }
 
-            if (offset > this.shape[0].length) {
-                this.rotateShape(this.shape);
+            if (collisionFactor > this.shape[0].length) {
+                // this.rotateShape(this.shape);
+                this.rotateShapeReverse(this.shape);
                 this.pos.x = posX;
                 return;
             }
@@ -94,6 +95,16 @@ class Piece {
         }
 
         pieceShape.forEach((row) => row.reverse());
+    }
+
+    rotateShapeReverse(pieceShape) {
+        for (let i = 0; i < pieceShape.length; i++) {
+            for (let j = 0; j < i; j++) {
+                [pieceShape[j][i], pieceShape[i][j]] = [pieceShape[i][j], pieceShape[j][i]];
+            }
+        }
+
+        pieceShape.reverse();
     }
 
     restart() {

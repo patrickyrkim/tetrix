@@ -2,15 +2,15 @@ class Board {
     constructor(gameWidth, gameHeight) {
         const newBoard = [];
 
-        // while (gameHeight !== 0) {
-        //     newBoard.push(new Array(gameWidth).fill(0));
-
-        //     gameHeight -= 1
-        // }
-
-        while (gameHeight--) {
+        while (gameHeight !== 0) {
             newBoard.push(new Array(gameWidth).fill(0));
+
+            gameHeight -= 1
         }
+
+        // while (gameHeight--) {
+        //     newBoard.push(new Array(gameWidth).fill(0));
+        // }
 
         this.newBoard = newBoard;
     }
@@ -18,8 +18,8 @@ class Board {
     detectCollision(piece) {
         const [shape, position] = [piece.shape, piece.pos];
 
-        for (let posY = 0; posY < shape.length; ++posY) {
-            for (let posX = 0; posX < shape[posY].length; ++posX) {
+        for (let posY = 0; posY < shape.length; posY++) {
+            for (let posX = 0; posX < shape[posY].length; posX++) {
                 // const value = shape[posY][posX];
                 // const xCollisionFactor = this.newBoard[posY + position.y];
                 // const yCollisionFactor = this.newBoard[posY + position.y][posX + position.x];
