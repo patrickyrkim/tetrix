@@ -20,28 +20,20 @@ class Board {
 
         for (let posY = 0; posY < shape.length; ++posY) {
             for (let posX = 0; posX < shape[posY].length; ++posX) {
-                let value = shape[posY][posX];
-                let xCollisionFactor = this.newBoard[posY + position.y];
-                let yCollisionFactor = this.newBoard[posY + position.y][posX + position.x];
+                // const value = shape[posY][posX];
+                // const xCollisionFactor = this.newBoard[posY + position.y];
+                // const yCollisionFactor = this.newBoard[posY + position.y][posX + position.x];
 
-                if (value !== 0 && (xCollisionFactor && yCollisionFactor) !== 0) {
+                // if (value !== 0 && (xCollisionFactor && yCollisionFactor) !== 0) {
+                //     return true;
+                // }
+
+                if (shape[posY][posX] !== 0 && (this.newBoard[posY + position.y] && this.newBoard[posY + position.y][posX + position.x]) !== 0) {
                     return true;
                 }
             }
         }
         return false;
-
-        // const [m, o] = [piece.shape, piece.pos];
-        // for (let y = 0; y < m.length; ++y) {
-        //     for (let x = 0; x < m[y].length; ++x) {
-        //         if (m[y][x] !== 0 &&
-        //             (this.newBoard[y + o.y] &&
-        //             this.newBoard[y + o.y][x + o.x]) !== 0) {
-        //                 return true;
-        //         }
-        //     }
-        // }
-        // return false;
     }
 
     clearRow() {
