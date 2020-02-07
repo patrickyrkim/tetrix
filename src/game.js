@@ -1,4 +1,5 @@
 import Board from "./board";
+import Piece from './piece';
 
 class Game {
     constructor(canvas) {
@@ -19,9 +20,9 @@ class Game {
             'pink',
         ];
 
-        this.piece = new Piece(this);
         // this.board = new Board(GAME_WIDTH, GAME_HEIGHT);
         this.board = new Board(this.canvas.width / 20, this.canvas.height / 20);
+        this.piece = new Piece(this);
 
         let currentTime = 0;
         const update = (time = 0) => {
@@ -40,8 +41,8 @@ class Game {
         // this.ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.drawPiece(board.newBoard, { x: 0, y: 0 });
-        this.drawPiece(piece.shape, piece.pos);
+        this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
+        this.drawPiece(this.piece.shape, this.piece.pos);
     }
 
     drawPiece(shape, adjustPos) {

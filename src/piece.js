@@ -11,10 +11,10 @@ class Piece {
         this.shape = null;
         this.score = 0;
 
-        this.restart();
-
         this.dropCounter = 0;
         this.dropTime = 1000;
+        
+        this.restart();
     }
 
     moveLeft() {

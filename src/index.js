@@ -15,22 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
     const game = new Game(canvas);
 
+    function updateScore() {
+        document.getElementById('score').innerText = game.piece.score;
+    }
+
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {
             // move right
-            piece.moveRight();
+            game.piece.moveRight();
         } else if (e.keyCode === 39) {
             // move left
-            piece.moveLeft();
+            game.piece.moveLeft();
         } else if (e.keyCode === 40) {
             // move down
-            piece.moveDown();
+            game.piece.moveDown();
         } else if (e.keyCode === 38) {
             // rotate
-            piece.rotateAction();
+            game.piece.rotateAction();
         }
     })
 
+    updateScore();
     // piece.restart();
     // update();
 });

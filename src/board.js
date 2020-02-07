@@ -2,10 +2,14 @@ class Board {
     constructor(gameWidth, gameHeight) {
         const newBoard = [];
 
-        while (gameHeight !== 0) {
-            newBoard.push(new Array(gameWidth).fill(0));
+        // while (gameHeight !== 0) {
+        //     newBoard.push(new Array(gameWidth).fill(0));
 
-            gameHeight -= 1
+        //     gameHeight -= 1
+        // }
+
+        while (gameHeight--) {
+            newBoard.push(new Array(gameWidth).fill(0));
         }
 
         this.newBoard = newBoard;
