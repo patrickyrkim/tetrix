@@ -10,6 +10,7 @@ class Piece {
         };
         this.shape = null;
         // this.shuffledShapes = null;
+        this.nextShape = null;
         this.score = 0;
 
         this.dropCounter = 0;
@@ -113,20 +114,28 @@ class Piece {
     //     array.sort(() => Math.random() - 0.5);
     // }
 
-    shuffle(a) {
-        for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
-    }
+    // shuffle(a) {
+    //     for (let i = a.length - 1; i > 0; i--) {
+    //         const j = Math.floor(Math.random() * (i + 1));
+    //         [a[i], a[j]] = [a[j], a[i]];
+    //     }
+    //     return a;
+    // }
 
     restart() {
         // const shapes = 'TIOJLZS';
         const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
         // let shuffledShapes = this.shuffle(shapes);
         // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
-        this.shape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
+        this.nextShape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
+        // this.shape = this.nextShape;
+
+        if (this.nextShape !== this.shape) {
+            this.shape = this.nextShape;
+        } else {
+            this.shape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
+        }
+
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
         this.pos.y = 0;
 
