@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // game.update();
+    game.start();
 });
 
 // // console.log("webpack is working")

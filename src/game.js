@@ -20,13 +20,13 @@ class Game {
 
         this.pieceColors = [
             null,
-            'red',
-            'orange',
-            'yellow',
-            'green',
-            'blue',
             'purple',
-            'pink',
+            'cyan',
+            'yellow',
+            'blue',
+            'orange',
+            'red',
+            'green',
         ];
 
         // this.board = new Board(GAME_WIDTH, GAME_HEIGHT);
@@ -35,15 +35,20 @@ class Game {
 
         let currentTime = 0;
         // this.currentTime = 0;
-        const update = (time = 0) => {
+        this.update = (time = 0) => {
             const deltaTime = time - currentTime;
             currentTime = time;
 
             this.piece.update(deltaTime);
             this.draw();
-            requestAnimationFrame(update);
+            requestAnimationFrame(this.update);
         }
-        update();
+        // this.update();
+        // this.updateScore(0);
+    }
+
+    start() {
+        this.update();
         this.updateScore(0);
     }
 
@@ -54,8 +59,6 @@ class Game {
     //         this.piece.update(deltaTime);
     //         this.draw();
     //         requestAnimationFrame(this.update);
-    //     // update();
-    //     // this.updateScore(0);
     // }
 
     toggleGameStart() {
