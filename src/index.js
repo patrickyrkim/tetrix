@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
     const game = new Game(canvas);
 
-    function updateScore() {
-        document.getElementById('score').innerText = `Score: ${game.piece.score}`;
-    }
-
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {
             game.piece.moveLeft();
@@ -28,15 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
             game.piece.moveDown();
         } else if (e.keyCode === 38) {
             game.piece.rotateAction();
-        } 
+        } else if (e.keyCode === 13) {
+            game.toggleGameStart();
+        }
         // else if (e.keyCode === 32) {
         //     game.piece.fastDrop();
         // }
     })
 
-    updateScore();
-    // piece.restart();
-    // update();
+    // game.update();
 });
 
 // // console.log("webpack is working")

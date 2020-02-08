@@ -9,6 +9,7 @@ class Piece {
             y: 0
         };
         this.shape = null;
+        // this.shuffledShapes = null;
         this.score = 0;
 
         this.dropCounter = 0;
@@ -108,10 +109,24 @@ class Piece {
         pieceShape.reverse();
     }
 
+    // shuffle(array) {
+    //     array.sort(() => Math.random() - 0.5);
+    // }
+
+    shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
     restart() {
-        const shapes = 'TIOJLZS';
-        this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-        // this.shape = tetrisShapes(shapes[(Math.random() * shapes.length)]);
+        // const shapes = 'TIOJLZS';
+        const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+        // let shuffledShapes = this.shuffle(shapes);
+        // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
+        this.shape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
         this.pos.y = 0;
 
@@ -219,82 +234,6 @@ export default Piece;
 //         ctx.strokeStyle = "gray";
 //         // ctx.strokeRect(x * SQUARE, y * SQUARE, SQUARE, SQUARE);
 //         ctx.strokeRect(x, y, 1, 1);
-//     }
-
-//     moveLeft() {
-//         // this.pos.x -= 20;
-//         this.pos.x -= 1;
-
-//         // if (this.detectCollision(-20, 0, this.gamePieces)) {
-//         //     this.pos.x -= 20;
-//         // }
-//     }
-
-//     moveRight() {
-//         // this.pos.x += 20;
-//         this.pos.x += 1;
-
-//         // if (this.detectCollision(20, 0, this.gamePieces)) {
-//         //     this.pos.x += 20;
-//         // }
-//     }
-
-//     moveDown() {
-//         // this.pos.y += 20;
-//         this.pos.y += 1;
-//         this.dropCounter = 0;
-
-//         // if (this.board.detectCollision()) {
-//         //     this.pos.y -= 20;
-//         // }
-//     }
-
-//     fastDrop() {
-//         this.dropTime = 0;
-//     }
-
-//     rotateAction() {
-//         this.rotatePiece(this.gamePieces);
-
-//         // if (!this.detectCollision(0, 20, this.gamePieces)) {
-//         //     this.rotatePiece(this.gamePieces);
-//         // } 
-//     }
-
-//     rotatePiece(pieceShape) {
-//         for (let i = 0; i < pieceShape.length; i++) {
-//             for (let j = 0; j < i; j++) {
-//                 [pieceShape[j][i], pieceShape[i][j]] = [pieceShape[i][j], pieceShape[j][i]];
-//             }
-//         }
-
-//         pieceShape.forEach((row) => row.reverse());
-//     }
-
-//     detectCollision(x, y, piece) {
-//         for (let row = 0; row < piece.length; row += 1) {
-//             for (let col = 0; col < piece[row].length; col += 1) {
-//                 if (this.gamePieces[row][col] !== 0) {
-//                     continue;
-//                 }
-
-//                 let newXPos = this.pos.x + col + x;
-//                 let newYPos = this.pos.y + row + y;
-
-//                 if (newXPos < 0 || newXPos >= this.gameWidth || newYPos >= this.gameHeight) {
-//                     return true;
-//                 }
-
-//                 if (newYPos < 0) {
-//                     continue;
-//                 }
-
-//                 if (this.board[newYPos][newXPos] !== 0) {
-//                     return true;
-//                 }
-//             }
-//         }
-//         return false;
 //     }
 
 //     update(deltaTime) {
