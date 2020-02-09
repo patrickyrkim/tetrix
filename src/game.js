@@ -15,6 +15,7 @@ class Game {
         this.ctx = canvas.getContext('2d');
 
         this.ctx.scale(20, 20);
+        // this.ctx.scale(30, 30);
 
         this.gamestate = GAMESTATE.MENU;
 
@@ -68,18 +69,21 @@ class Game {
     }
 
     draw() {
-        this.ctx.fillStyle = 'gray';
-        // this.ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        // this.ctx.strokeStyle = 'black';
-        // this.ctx.strokeRect(0, 0, 20, 20)
+        // this.ctx.fillStyle = 'gray';
+        // // this.ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        // // this.ctx.strokeStyle = 'black';
+        // // this.ctx.strokeRect(0, 0, 20, 20)
 
-        this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
-        this.drawPiece(this.piece.shape, this.piece.pos);
+        // this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
+        // this.drawPiece(this.piece.shape, this.piece.pos);
 
         if (this.gamestate === GAMESTATE.MENU) {
             this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = 'black';
+            // this.ctx.fillStyle = '#5D5C61';
+            // this.ctx.fillStyle = '#7395AE';
+            // this.ctx.fillStyle = '#001f3f';
+            this.ctx.fillStyle = '#98B4D4';
             this.ctx.fill();
 
             this.ctx.font = '30px arial';
@@ -89,7 +93,8 @@ class Game {
         }
 
         if (this.gamestate === GAMESTATE.RUNNING) {
-            this.ctx.fillStyle = 'gray';
+            this.ctx.fillStyle = '#001f3f';
+            // this.ctx.fillStyle = '#98B4D4';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
             this.drawPiece(this.board.newBoard, { x: 0, y: 0 });

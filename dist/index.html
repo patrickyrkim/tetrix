@@ -8,10 +8,34 @@
     <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
 </head>
 <body>
-    <canvas id="game-canvas" width="200" height="400"></canvas>
-    <script type="application/javascript" src="./main.js"></script>
-    <div>
-        <div id="score"></div>
+    <header><h1>TETRIX</h1></header>
+    <div class="game-contents">
+        <div class="col-left">
+            <div class="instructions">
+                INSTRUCTIONS: 
+                <br>
+                PRESS ENTER TO START
+                <br>
+                LEFT ARROW - move left
+                <br>
+                RIGHT ARROW - move right
+                <br>
+                DOWN ARROW - move down
+                <br>
+                UP ARROW - rotate
+            </div>
+        </div>
+        <div class="col-middle">
+            <div class="score">
+                <div id="score"></div>
+            </div>
+            <canvas id="game-canvas" width="200" height="400"></canvas>
+            <!-- <canvas id="game-canvas" width="300" height="600"></canvas> -->
+            <script type="application/javascript" src="./main.js"></script>
+        </div>
+        <div class="col-right">
+            <div>MORE INFO</div>
+        </div>
     </div>
     <footer>Copyright &copy; 2020 Tetrix by Patrick</footer>
 </body>
