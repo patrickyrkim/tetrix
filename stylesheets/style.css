@@ -65,9 +65,7 @@ footer {
 }
 
 #score {
-    /* padding-bottom: 10px; */
-    /* font-size: 20px; */
-    border: 1px solid white;
+    /* border: 1px solid white; */
     border-radius: 4px;
     padding: 20px;
     width: 100px;
