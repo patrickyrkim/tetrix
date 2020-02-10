@@ -30,9 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // else if (e.keyCode === 32) {
         //     game.piece.fastDrop();
         // }
-    })
+    });
 
-    // game.update();
     game.start();
 });
 
