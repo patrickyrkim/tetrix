@@ -59,16 +59,30 @@ footer {
     text-align: center;
 }
 
-.score {
+.score-container {
     padding: 0 140px 20px;
     font-size: 20px;
 }
 
 #score {
-    /* border: 1px solid white; */
+    background: #001f3f;
+    border: 1px solid white;
     border-radius: 4px;
     padding: 20px;
     width: 100px;
-    color: white;
-    
+    color: white;   
+}
+
+.next-container {
+    padding: 0 140px 20px;
+    font-size: 20px;
+}
+
+#next {
+    background: #001f3f;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 20px;
+    width: 100px;
+    color: white;  
 }

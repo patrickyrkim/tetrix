@@ -118,7 +118,8 @@ class Game {
 
     updateScore(score) {
         // document.getElementById('score').innerText = `Score: ${game.piece.score}`;
-        document.getElementById('score').innerText = `Score: ${score}`;
+        // document.getElementById('score').innerText = `Score: ${score}`;
+        document.getElementById('score').innerText = `${score}`;
     }
 }
 
