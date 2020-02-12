@@ -41,6 +41,7 @@ class Piece {
         if (this.board.detectCollision(this)) {
             this.pos.y -= 1;
             this.board.lockPieceOnBoard(this);
+            // this.updateNextPiece(this.shape);
             this.restart();
             this.score += this.board.clearFilledRow();
             // updateScore();
@@ -122,19 +123,31 @@ class Piece {
     //     return a;
     // }
 
-    restart() {
-        // const shapes = 'TIOJLZS';
+    handleRandomShape() {
+        // let shape = this.shape;
         const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
-        // let shuffledShapes = this.shuffle(shapes);
-        // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
-        this.nextShape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
-        // this.shape = this.nextShape;
+        // shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+        this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
 
-        if (this.nextShape !== this.shape) {
-            this.shape = this.nextShape;
-        } else {
-            this.shape = tetrisShapes(shapes[(Math.floor(Math.random() * shapes.length))]);
-        }
+        // if (shape === null) {
+
+        // } else {
+        //     this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+        // }
+    }
+
+    updateNextPiece(nextPiece) {
+        document.getElementById('next').innerText = `${nextPiece}`;
+    }
+
+    restart() {
+        // // const shapes = 'TIOJLZS';
+        // const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+        // // let shuffledShapes = this.shuffle(shapes);
+        // // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
+        // this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+
+        this.handleRandomShape();
 
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
         this.pos.y = 0;
