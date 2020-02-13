@@ -10,7 +10,10 @@ class Piece {
         };
         this.shape = null;
         // this.shuffledShapes = null;
+
+        // this.prevShape = null;
         this.nextShape = null;
+
         this.score = 0;
 
         this.dropCounter = 0;
@@ -42,6 +45,12 @@ class Piece {
             this.pos.y -= 1;
             this.board.lockPieceOnBoard(this);
             // this.updateNextPiece(this.shape);
+
+            // this.handleRandomShape();
+
+            // this.updatePieceStates();
+            // this.updateNextPiece(this.shape);
+
             this.restart();
             this.score += this.board.clearFilledRow();
             // updateScore();
@@ -124,20 +133,18 @@ class Piece {
     // }
 
     handleRandomShape() {
-        // let shape = this.shape;
         const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
-        // shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
         this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-
-        // if (shape === null) {
-
-        // } else {
-        //     this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-        // }
+        // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
     }
 
     updateNextPiece(nextPiece) {
         document.getElementById('next').innerText = `${nextPiece}`;
+    }
+
+    updatePieceStates() {
+        this.shape = this.nextShape;
+        // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
     }
 
     restart() {
@@ -149,7 +156,11 @@ class Piece {
 
         this.handleRandomShape();
 
+        // this.updatePieceStates();
+        // this.updateNextPiece(this.shape);
+
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
+        // this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.nextShape[0].length / 2);
         this.pos.y = 0;
 
         if (this.board.detectCollision(this)) {
