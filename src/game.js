@@ -193,6 +193,20 @@ class Game {
             })
         })
     }
+    //////
+
+    ////// CURRENT PIECE //////
+    unDrawCurrentShape(shape, adjustPos) {
+        shape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                if (value !== 0) {
+                    this.ctx.fillStyle = '#001f3f';
+                    this.ctx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
+                }
+            })
+        })
+    }
+    //////
 
     updateScore(score) {
         // document.getElementById('score').innerText = `Score: ${game.piece.score}`;

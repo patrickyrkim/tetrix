@@ -16,6 +16,8 @@ class Piece {
 
         this.holdShape = null;
 
+        this.intermediateShape = null;
+
         this.score = 0;
 
         this.pieceColors = [
@@ -187,11 +189,15 @@ class Piece {
             this.restart();
         } else {
             this.game.unDrawPreviousHoldShape(this.holdShape);
-            this.holdShape = this.shape;
-            this.game.drawHoldPiece(this.holdShape, { x: 1, y: 1 });
-            this.shape = this.holdShape;
+            this.game.unDrawCurrentShape(this.shape, this.pos);
+            this.game.drawHoldPiece(this.shape, { x: 1, y: 1 });
+            // this.intermediateShape = this.holdShape;
+            // this.holdShape = this.shape;
+            // this.shape = this.intermediateShape;
+            [this.shape, this.holdShape] = [this.holdShape, this.shape];
             // undraw current shape
             // draw new current shape that is the previous shape
+            this.game.drawPiece(this.shape, this.pos);
         }
     }
 
