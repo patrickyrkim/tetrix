@@ -18,6 +18,7 @@ class Game {
 
         this.ctx.scale(20, 20);
         // this.ctx.scale(30, 30);
+        this.nextCtx.scale(20,20);
 
         this.gamestate = GAMESTATE.MENU;
 
@@ -42,6 +43,7 @@ class Game {
             const deltaTime = time - currentTime;
             currentTime = time;
 
+            this.unDrawPreviousShape(this.piece.shape);
             this.piece.update(deltaTime);
             this.draw();
             requestAnimationFrame(this.update);
@@ -105,7 +107,11 @@ class Game {
 
             this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
             this.drawPiece(this.piece.shape, this.piece.pos);
-            this.drawNextPiece(this.piece.nextShape);
+
+            // this.unDrawPreviousShape();
+            this.drawNextPiece(this.board.nextPieceBoard(this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 })
+            // this.drawNextPiece(this.piece.nextShape, { x: this.piece.nextShape[0].length / 2, y: 1 });
+            this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
         }
     }
 
@@ -123,16 +129,35 @@ class Game {
         })
     }
 
-    drawNextPiece(nextShape) {
+    drawNextPiece(nextShape, adjustPos) {
         nextShape.forEach((row, i) => {
             row.forEach((value, j) => {
                 if (value !== 0) {
-                    // this.ctx.fillStyle = 'red';
                     this.nextCtx.fillStyle = this.pieceColors[value];
-                    this.nextCtx.fillRect(j, i, 1, 1)
-                    // this.ctx.strokeStyle = 'black';
-                    // this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    this.nextCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
                 }
+            })
+        })
+    }
+
+    // unDrawPreviousShape() {
+    //     this.board.nextPieceBoard((this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 }).forEach((row, i) => {
+    //         row.forEach((value, j) => {
+    //             this.nextCtx.fillStyle = '#001f3f';
+    //             // this.nextCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
+    //             this.nextCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+    //             this.nextCtx.fill()
+    //         })
+    //     })
+    // }
+
+    unDrawPreviousShape(shape) {
+       shape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                this.nextCtx.fillStyle = '#001f3f';
+                // this.nextCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
+                this.nextCtx.fillRect(j + 1, i + 1, 1, 1);
+                // this.nextCtx.fill()
             })
         })
     }

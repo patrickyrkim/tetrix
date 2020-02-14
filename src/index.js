@@ -32,16 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /////////// NEXT PIECE CANVAS //////////
 
-    // nextCtx.rect(0, 0, nextCanvas.width, nextCanvas.height);
-    // nextCtx.fillStyle = '#001f3f'
-    // nextCtx.fill();
+    nextCtx.rect(0, 0, nextCanvas.width, nextCanvas.height);
+    nextCtx.fillStyle = '#001f3f'
+    nextCtx.fill();
 
     ///////////
 
     // const piece = new Piece;
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
-    const game = new Game(canvas);
-    // const game = new Game(canvas, nextCanvas);
+    // const game = new Game(canvas);
+    const game = new Game(canvas, nextCanvas);
 
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {

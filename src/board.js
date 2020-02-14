@@ -15,6 +15,18 @@ class Board {
         this.newBoard = newBoard;
     }
 
+    nextPieceBoard(width, height) {
+        const nextBoard = [];
+
+        while (height !== 0) {
+            nextBoard.push(new Array(width).fill(0));
+
+            height -= 1
+        }
+
+        return nextBoard;
+    }
+
     detectCollision(piece) {
         const [shape, position] = [piece.shape, piece.pos];
 
@@ -39,6 +51,10 @@ class Board {
     clearRow() {
         this.newBoard.forEach((row) => row.fill(0));
     }
+
+    // clearNextPiece() {
+    //     this.nextPieceBoard().forEach((row) => row.fill(0));
+    // }
 
     clearFilledRow() {
         let rowCounter = 1;

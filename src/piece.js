@@ -159,14 +159,9 @@ class Piece {
     }
 
     updateNextPiece(nextPiece) {
-        document.getElementById('next').innerText = `${nextPiece}`;
-        // document.getElementById('next-canvas').innerText = `${nextPiece}`;
+        // document.getElementById('next').innerText = `${nextPiece}`;
+        document.getElementById('next-canvas').innerText = `${nextPiece}`;
     }
-
-    // updatePieceStates() {
-    //     this.shape = this.nextShape;
-    //     // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-    // }
 
     restart() {
         // // const shapes = 'TIOJLZS';
@@ -174,12 +169,6 @@ class Piece {
         // // let shuffledShapes = this.shuffle(shapes);
         // // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
         // this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-
-        // this.handleRandomShape();
-        // this.handleCurrentShape();
-
-        // this.updatePieceStates();
-        // this.updateNextPiece(this.shape);
 
         this.handleCurrentShape();
         this.handleNextShape();
