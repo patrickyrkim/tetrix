@@ -6,10 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
 
+    const nextCanvas = document.getElementById('next-canvas');
+    const nextCtx = nextCanvas.getContext('2d');
+
     // ctx.scale(20, 20);
 
     const GAME_WIDTH = canvas.width;
     const GAME_HEIGHT = canvas.height;
+
+    ////////// MENU STATE DISPLAY //////////
 
     ctx.rect(0, 0, canvas.width, canvas.height);
     // ctx.fillStyle = '#5D5C61';
@@ -23,9 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.textAlign = 'center';
     ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
 
+    ///////////
+
+    /////////// NEXT PIECE CANVAS //////////
+
+    // nextCtx.rect(0, 0, nextCanvas.width, nextCanvas.height);
+    // nextCtx.fillStyle = '#001f3f'
+    // nextCtx.fill();
+
+    ///////////
+
     // const piece = new Piece;
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
     const game = new Game(canvas);
+    // const game = new Game(canvas, nextCanvas);
 
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {

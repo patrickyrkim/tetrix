@@ -51,7 +51,15 @@ class Piece {
             // this.updatePieceStates();
             // this.updateNextPiece(this.shape);
 
+            // this.handleCurrentShape();
+            // this.handleNextShape();
+            // this.updateNextPiece();
+
             this.restart();
+
+            // this.handleNextShape();
+            // this.updateNextPiece();
+
             this.score += this.board.clearFilledRow();
             // updateScore();
             this.game.updateScore(this.score);
@@ -138,14 +146,27 @@ class Piece {
         // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
     }
 
-    updateNextPiece(nextPiece) {
-        document.getElementById('next').innerText = `${nextPiece}`;
+    handleCurrentShape() {
+        const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+
+        this.shape = this.nextShape;
+        this.shape === null ? this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]) : this.shape = this.nextShape;
     }
 
-    updatePieceStates() {
-        this.shape = this.nextShape;
-        // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+    handleNextShape() {
+        const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+        this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
     }
+
+    updateNextPiece(nextPiece) {
+        document.getElementById('next').innerText = `${nextPiece}`;
+        // document.getElementById('next-canvas').innerText = `${nextPiece}`;
+    }
+
+    // updatePieceStates() {
+    //     this.shape = this.nextShape;
+    //     // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+    // }
 
     restart() {
         // // const shapes = 'TIOJLZS';
@@ -154,10 +175,15 @@ class Piece {
         // // this.shape = tetrisShapes(shuffledShapes[Math.floor(Math.random() * shapes.length)]);
         // this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
 
-        this.handleRandomShape();
+        // this.handleRandomShape();
+        // this.handleCurrentShape();
 
         // this.updatePieceStates();
         // this.updateNextPiece(this.shape);
+
+        this.handleCurrentShape();
+        this.handleNextShape();
+        this.updateNextPiece(this.nextShape);
 
         this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.shape[0].length / 2);
         // this.pos.x = Math.floor(this.board.newBoard[0].length / 2) - Math.floor(this.nextShape[0].length / 2);
