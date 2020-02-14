@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextCanvas = document.getElementById('next-canvas');
     const nextCtx = nextCanvas.getContext('2d');
 
+    const holdCanvas = document.getElementById('hold-canvas');
+    const holdCtx = holdCanvas.getContext('2d');
+
     // ctx.scale(20, 20);
 
     const GAME_WIDTH = canvas.width;
@@ -38,10 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ///////////
 
-    // const piece = new Piece;
+    /////////// HOLD PIECE CANVAS //////////
+
+    holdCtx.rect(0, 0, holdCanvas.width, holdCanvas.height);
+    holdCtx.fillStyle = '#001f3f'
+    holdCtx.fill();
+
+    ///////////
+
+    // const piece = new Piece(game);
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
     // const game = new Game(canvas);
-    const game = new Game(canvas, nextCanvas);
+    const game = new Game(canvas, nextCanvas, holdCanvas);
 
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {
@@ -55,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (e.keyCode === 13) {
             game.toggleGameStart();
             game.start();
+        } else if (e.keyCode === 16) {
+            // hold piece
+            game.holdPiece();
         }
         // else if (e.keyCode === 32) {
         //     game.piece.fastDrop();

@@ -86,3 +86,8 @@ footer {
     width: 100px;
     color: white;  
 }
+
+.hold-container {
+    padding: 0 140px 20px;
+    font-size: 20px;
+}

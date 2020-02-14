@@ -14,7 +14,20 @@ class Piece {
         // this.prevShape = null;
         this.nextShape = null;
 
+        this.holdShape = null;
+
         this.score = 0;
+
+        this.pieceColors = [
+            null,
+            'purple',
+            'cyan',
+            'yellow',
+            'blue',
+            'orange',
+            'red',
+            'green',
+        ];
 
         this.dropCounter = 0;
         this.dropTime = 1000;
@@ -140,11 +153,11 @@ class Piece {
     //     return a;
     // }
 
-    handleRandomShape() {
-        const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
-        this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-        // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
-    }
+    // handleRandomShape() {
+    //     const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+    //     this.shape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+    //     // this.nextShape = tetrisShapes(shapes[Math.floor(Math.random() * shapes.length)]);
+    // }
 
     handleCurrentShape() {
         const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
@@ -162,6 +175,52 @@ class Piece {
         // document.getElementById('next').innerText = `${nextPiece}`;
         document.getElementById('next-canvas').innerText = `${nextPiece}`;
     }
+
+    ///// HOLD PIECE
+    handleHoldShape() {
+        // this.holdShape = this.shape;
+        // this.restart();
+
+        if (this.holdShape === null) {
+            this.holdShape = this.shape;
+            this.game.drawHoldPiece(this.holdShape, { x: 1, y: 1 });
+            this.restart();
+        } else {
+            this.game.unDrawPreviousHoldShape(this.holdShape);
+            this.holdShape = this.shape;
+            this.game.drawHoldPiece(this.holdShape, { x: 1, y: 1 });
+            this.shape = this.holdShape;
+            // undraw current shape
+            // draw new current shape that is the previous shape
+        }
+    }
+
+    // drawHoldPiece(nextShape, adjustPos) {
+    //     nextShape.forEach((row, i) => {
+    //         row.forEach((value, j) => {
+    //             if (value !== 0) {
+    //                 this.holdCtx.fillStyle = this.pieceColors[value];
+    //                 this.holdCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
+    //             }
+    //         })
+    //     })
+    // }
+
+    // unDrawPreviousHoldShape(shape) {
+    //     shape.forEach((row, i) => {
+    //         row.forEach((value, j) => {
+    //             this.holdCtx.fillStyle = '#001f3f';
+    //             // this.holdCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
+    //             this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
+    //             // this.holdCtx.fill()
+    //         })
+    //     })
+    // }
+
+    updateHoldPiece(holdPiece) {
+        document.getElementById('hold-canvas').innerText = `${holdPiece}`;
+    }
+    /////
 
     restart() {
         // // const shapes = 'TIOJLZS';

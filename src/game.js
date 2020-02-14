@@ -9,16 +9,19 @@ const GAMESTATE = {
 }
 
 class Game {
-    constructor(canvas, nextCanvas) {
+    constructor(canvas, nextCanvas, holdCanvas) {
         this.canvas = canvas;
         this.nextCanvas = nextCanvas;
+        this.holdCanvas = holdCanvas;
 
         this.ctx = canvas.getContext('2d');
         this.nextCtx = nextCanvas.getContext('2d');
+        this.holdCtx = holdCanvas.getContext('2d');
 
         this.ctx.scale(20, 20);
         // this.ctx.scale(30, 30);
-        this.nextCtx.scale(20,20);
+        this.nextCtx.scale(20, 20);
+        this.holdCtx.scale(20, 20)
 
         this.gamestate = GAMESTATE.MENU;
 
@@ -55,6 +58,10 @@ class Game {
     start() {
         this.update();
         this.updateScore(0);
+    }
+
+    holdPiece() {
+        this.piece.handleHoldShape();
     }
 
     // update(time = 0) {
@@ -112,6 +119,8 @@ class Game {
             this.drawNextPiece(this.board.nextPieceBoard(this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 })
             // this.drawNextPiece(this.piece.nextShape, { x: this.piece.nextShape[0].length / 2, y: 1 });
             this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
+            
+            this.drawNextPiece(this.board.nextPieceBoard(this.holdCanvas.width / 20, this.holdCanvas.height / 20), { x: 0, y: 0 })
         }
     }
 
@@ -158,6 +167,29 @@ class Game {
                 // this.nextCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
                 this.nextCtx.fillRect(j + 1, i + 1, 1, 1);
                 // this.nextCtx.fill()
+            })
+        })
+    }
+
+    ///// HOLD /////
+    drawHoldPiece(nextShape, adjustPos) {
+        nextShape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                if (value !== 0) {
+                    this.holdCtx.fillStyle = this.pieceColors[value];
+                    this.holdCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
+                }
+            })
+        })
+    }
+
+    unDrawPreviousHoldShape(shape) {
+        shape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                this.holdCtx.fillStyle = '#001f3f';
+                // this.holdCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
+                this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
+                // this.holdCtx.fill()
             })
         })
     }
