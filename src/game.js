@@ -148,7 +148,13 @@ class Game {
         if (this.gamestate === GAMESTATE.GAMEOVER) {
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';  //opaque color???
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.fill;
+            this.ctx.fill();
+        }
+
+        if (this.gamestate === GAMESTATE.PAUSED) {
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fill();
         }
     }
 
