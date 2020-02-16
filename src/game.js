@@ -85,6 +85,7 @@ class Game {
             this.gamestate = GAMESTATE.PLAY;
         } else if (this.gamestate === GAMESTATE.GAMEOVER) {
             this.gamestate = GAMESTATE.PLAY;
+            this.board.clearRow();
         }
     }
 

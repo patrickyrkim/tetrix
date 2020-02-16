@@ -98,8 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
     });
 
-    // document.addEventListener('mousedown', e => {
-        
+    // const restartButton = document.getElementById('restart-button');
+    // restartButton.addEventListener('click', () => {
+    //     game.toggleGameStart();
+    //     game.start();
     // })
 
     // gamestateText();
