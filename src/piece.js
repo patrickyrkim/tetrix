@@ -64,9 +64,9 @@ class Piece {
     }
 
     fastDrop() {
-        // this.dropTime = 0;
-        this.pos.y += (20 - this.shape.length);
-        // this.pos.y = 20
+        while (!this.board.detectCollision(this)) {
+            this.pos.y += 1;
+        }
 
         if (this.board.detectCollision(this)) {
             this.pos.y -= 1;
@@ -75,9 +75,6 @@ class Piece {
             this.score += this.board.clearFilledRow();
             // updateScore();
         }
-
-        this.dropCounter = 0;
-        // this.dropTime = 1000;
     }
 
     rotateAction() {

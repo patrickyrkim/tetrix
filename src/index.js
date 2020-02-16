@@ -2,12 +2,12 @@ import Piece from './piece';
 import Board from './board';
 import Game from './game';
 
-const GAMESTATE = {
-    PAUSED: 0,
-    PLAY: 1,
-    GAMEOVER: 2,
-    MENU: 3,
-}
+// const GAMESTATE = {
+//     PAUSED: 0,
+//     PLAY: 1,
+//     GAMEOVER: 2,
+//     MENU: 3,
+// }
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
@@ -92,10 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
             game.holdPiece();
         } else if (e.keyCode === 80) {
             game.toggleGamePause();
+        } else if (e.keyCode === 32) {
+            game.piece.fastDrop();
         }
-        // else if (e.keyCode === 32) {
-        //     game.piece.fastDrop();
-        // }
     });
 
     // const restartButton = document.getElementById('restart-button');
