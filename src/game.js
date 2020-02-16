@@ -92,6 +92,7 @@ class Game {
         if (this.gamestate === GAMESTATE.PLAY) {
             this.gamestate = GAMESTATE.PAUSED;
             // cancelAnimationFrame(this.update);
+            alert("PAUSED GAME, press P to Resume Play");
             return;
             // PAUSES THE GAME BUT PIECES CONTINUE TO FALL???
         } else if (this.gamestate === GAMESTATE.PAUSED) {
@@ -119,10 +120,10 @@ class Game {
             this.ctx.fillStyle = '#98B4D4';
             this.ctx.fill();
 
-            this.ctx.font = '30px arial';
-            this.ctx.fillStyle = 'white';
-            this.ctx.textAlign = 'center';
-            this.ctx.fillText("Press ENTER To Start", this.canvas.width / 2, this.canvas.height / 2);
+            // this.ctx.font = '30px arial';
+            // this.ctx.fillStyle = 'white';
+            // this.ctx.textAlign = 'center';
+            // this.ctx.fillText("Press ENTER To Start", this.canvas.width / 2, this.canvas.height / 2);
         }
 
         if (this.gamestate === GAMESTATE.PLAY) {
@@ -149,12 +150,22 @@ class Game {
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';  //opaque color???
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.fill();
+
+            // this.ctx.font = '30px arial';
+            // this.ctx.fillStyle = 'white';
+            // this.ctx.textAlign = 'center';
+            // this.ctx.fillText("GAMEOVER", this.canvas.width / 2, this.canvas.height / 2);
         }
 
         if (this.gamestate === GAMESTATE.PAUSED) {
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.fill();
+
+            // this.ctx.font = '30px arial';
+            // this.ctx.fillStyle = 'white';
+            // this.ctx.textAlign = 'center';
+            // this.ctx.fillText("PAUSED", this.canvas.width / 2, this.canvas.height / 2);
         }
     }
 

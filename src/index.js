@@ -2,6 +2,13 @@ import Piece from './piece';
 import Board from './board';
 import Game from './game';
 
+const GAMESTATE = {
+    PAUSED: 0,
+    PLAY: 1,
+    GAMEOVER: 2,
+    MENU: 3,
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
@@ -11,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const holdCanvas = document.getElementById('hold-canvas');
     const holdCtx = holdCanvas.getContext('2d');
+
+    // const game = new Game(canvas, nextCanvas, holdCanvas);
 
     // ctx.scale(20, 20);
 
@@ -29,6 +38,25 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
     ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
+    
+    // function gamestateText() {
+    //     if (game.gamestate === GAMESTATE.MENU) {
+    //         ctx.font = '18px arial';
+    //         ctx.fillStyle = 'white';
+    //         ctx.textAlign = 'center';
+    //         ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
+    //     } else if (game.gamestate === GAMESTATE.PAUSED) {
+    //         ctx.font = '18px arial';
+    //         ctx.fillStyle = 'white';
+    //         ctx.textAlign = 'center';
+    //         ctx.fillText("PAUSED", canvas.width / 2, canvas.height / 2);
+    //     } else if (game.gamestate === GAMESTATE.GAMEOVER) {
+    //         ctx.font = '18px arial';
+    //         ctx.fillStyle = 'white';
+    //         ctx.textAlign = 'center';
+    //         ctx.fillText("GAMEOVER", canvas.width / 2, canvas.height / 2);
+    //     }
+    // }
     ///////////
 
     /////////// NEXT PIECE CANVAS //////////
@@ -70,5 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
     });
 
+    // document.addEventListener('mousedown', e => {
+        
+    // })
+
+    // gamestateText();
     // game.start();
 });

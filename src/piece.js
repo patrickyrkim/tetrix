@@ -205,9 +205,10 @@ class Piece {
             // GAMESTATE === GAMEOVER
             if (this.game.gamestate === GAMESTATE.PLAY) {
                 this.game.gamestate = GAMESTATE.GAMEOVER;
+                alert('GAME OVER! Press ENTER to Restart Game');
                 return;
             }
-
+            
             // this.board.forEach((row) => row.fill(0));
             this.board.clearRow();
             this.score = 0;

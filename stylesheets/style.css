@@ -35,12 +35,16 @@ footer {
     padding: 80px 0 10px;
 }
 
+.menu-contents {
+    display: none;
+}
+
 .game-contents {
     display: flex;
     justify-content: space-between;
 }
 
-.col-left {
+.col-left, .col-right {
     width: 33.33%;
     /* justify-content: center; */
     text-align: center;
@@ -54,17 +58,12 @@ footer {
     border-right: 2px solid white;
 }
 
-.col-right {
-    width: 33.33%;
-    text-align: center;
-}
-
 .score-container {
     padding: 0 140px 20px;
     font-size: 20px;
 }
 
-#score {
+#score, #next {
     background: #001f3f;
     border: 1px solid white;
     border-radius: 4px;
@@ -73,21 +72,7 @@ footer {
     color: white;   
 }
 
-.next-container {
-    padding: 0 140px 20px;
-    font-size: 20px;
-}
-
-#next {
-    background: #001f3f;
-    border: 1px solid white;
-    border-radius: 4px;
-    padding: 20px;
-    width: 100px;
-    color: white;  
-}
-
-.hold-container {
+.next-container, .hold-container {
     padding: 0 140px 20px;
     font-size: 20px;
 }
