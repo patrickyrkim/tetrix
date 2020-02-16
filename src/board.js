@@ -52,10 +52,6 @@ class Board {
         this.newBoard.forEach((row) => row.fill(0));
     }
 
-    // clearNextPiece() {
-    //     this.nextPieceBoard().forEach((row) => row.fill(0));
-    // }
-
     clearFilledRow() {
         let rowCounter = 1;
         let score = 0;

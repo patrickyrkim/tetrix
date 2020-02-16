@@ -46,10 +46,17 @@ class Game {
             const deltaTime = time - currentTime;
             currentTime = time;
 
+            // console.log(time, currentTime);
+
             this.unDrawPreviousShape(this.piece.shape);
             this.piece.update(deltaTime);
             this.draw();
-            requestAnimationFrame(this.update);
+            // requestAnimationFrame(this.update);  
+            if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.GAMEOVER || this.gamestate === GAMESTATE.MENU) {
+                cancelAnimationFrame(this.update);
+            } else if (this.gamestate === GAMESTATE.PLAY) {
+                requestAnimationFrame(this.update);
+            }
         }
         // this.update();
         // this.updateScore(0);
@@ -75,7 +82,22 @@ class Game {
 
     toggleGameStart() {
         if (this.gamestate === GAMESTATE.MENU) {
-            this.gamestate = GAMESTATE.RUNNING;
+            this.gamestate = GAMESTATE.PLAY;
+        } else if (this.gamestate === GAMESTATE.GAMEOVER) {
+            this.gamestate = GAMESTATE.PLAY;
+        }
+    }
+
+    toggleGamePause() {
+        if (this.gamestate === GAMESTATE.PLAY) {
+            this.gamestate = GAMESTATE.PAUSED;
+            // cancelAnimationFrame(this.update);
+            return;
+            // PAUSES THE GAME BUT PIECES CONTINUE TO FALL???
+        } else if (this.gamestate === GAMESTATE.PAUSED) {
+            this.gamestate = GAMESTATE.PLAY;
+            requestAnimationFrame(this.update);
+            return;
         }
     }
 
@@ -103,7 +125,7 @@ class Game {
             this.ctx.fillText("Press ENTER To Start", this.canvas.width / 2, this.canvas.height / 2);
         }
 
-        if (this.gamestate === GAMESTATE.RUNNING) {
+        if (this.gamestate === GAMESTATE.PLAY) {
             this.ctx.fillStyle = '#001f3f';
             // this.ctx.fillStyle = '#98B4D4';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -121,6 +143,12 @@ class Game {
             this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
             
             this.drawNextPiece(this.board.nextPieceBoard(this.holdCanvas.width / 20, this.holdCanvas.height / 20), { x: 0, y: 0 })
+        }
+
+        if (this.gamestate === GAMESTATE.GAMEOVER) {
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';  //opaque color???
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fill;
         }
     }
 
@@ -164,9 +192,7 @@ class Game {
        shape.forEach((row, i) => {
             row.forEach((value, j) => {
                 this.nextCtx.fillStyle = '#001f3f';
-                // this.nextCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
                 this.nextCtx.fillRect(j + 1, i + 1, 1, 1);
-                // this.nextCtx.fill()
             })
         })
     }
@@ -187,9 +213,7 @@ class Game {
         shape.forEach((row, i) => {
             row.forEach((value, j) => {
                 this.holdCtx.fillStyle = '#001f3f';
-                // this.holdCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
                 this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
-                // this.holdCtx.fill()
             })
         })
     }
@@ -215,4 +239,4 @@ class Game {
     }
 }
 
-export default Game;
+export default Game; 

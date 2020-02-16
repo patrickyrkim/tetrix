@@ -1,5 +1,12 @@
 import { tetrisShapes } from './piece_shapes';
 
+const GAMESTATE = {
+    PAUSED: 0,
+    PLAY: 1,
+    GAMEOVER: 2,
+    MENU: 3,
+}
+
 class Piece {
     constructor(game) {
         this.game = game;
@@ -11,25 +18,11 @@ class Piece {
         this.shape = null;
         // this.shuffledShapes = null;
 
-        // this.prevShape = null;
         this.nextShape = null;
-
         this.holdShape = null;
-
         this.intermediateShape = null;
 
         this.score = 0;
-
-        this.pieceColors = [
-            null,
-            'purple',
-            'cyan',
-            'yellow',
-            'blue',
-            'orange',
-            'red',
-            'green',
-        ];
 
         this.dropCounter = 0;
         this.dropTime = 1000;
@@ -59,21 +52,8 @@ class Piece {
         if (this.board.detectCollision(this)) {
             this.pos.y -= 1;
             this.board.lockPieceOnBoard(this);
-            // this.updateNextPiece(this.shape);
-
-            // this.handleRandomShape();
-
-            // this.updatePieceStates();
-            // this.updateNextPiece(this.shape);
-
-            // this.handleCurrentShape();
-            // this.handleNextShape();
-            // this.updateNextPiece();
 
             this.restart();
-
-            // this.handleNextShape();
-            // this.updateNextPiece();
 
             this.score += this.board.clearFilledRow();
             // updateScore();
@@ -201,28 +181,6 @@ class Piece {
         }
     }
 
-    // drawHoldPiece(nextShape, adjustPos) {
-    //     nextShape.forEach((row, i) => {
-    //         row.forEach((value, j) => {
-    //             if (value !== 0) {
-    //                 this.holdCtx.fillStyle = this.pieceColors[value];
-    //                 this.holdCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
-    //             }
-    //         })
-    //     })
-    // }
-
-    // unDrawPreviousHoldShape(shape) {
-    //     shape.forEach((row, i) => {
-    //         row.forEach((value, j) => {
-    //             this.holdCtx.fillStyle = '#001f3f';
-    //             // this.holdCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
-    //             this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
-    //             // this.holdCtx.fill()
-    //         })
-    //     })
-    // }
-
     updateHoldPiece(holdPiece) {
         document.getElementById('hold-canvas').innerText = `${holdPiece}`;
     }
@@ -244,6 +202,12 @@ class Piece {
         this.pos.y = 0;
 
         if (this.board.detectCollision(this)) {
+            // GAMESTATE === GAMEOVER
+            if (this.game.gamestate === GAMESTATE.PLAY) {
+                this.game.gamestate = GAMESTATE.GAMEOVER;
+                return;
+            }
+
             // this.board.forEach((row) => row.fill(0));
             this.board.clearRow();
             this.score = 0;

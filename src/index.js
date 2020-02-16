@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const GAME_HEIGHT = canvas.height;
 
     ////////// MENU STATE DISPLAY //////////
-
     ctx.rect(0, 0, canvas.width, canvas.height);
     // ctx.fillStyle = '#5D5C61';
     // ctx.fillStyle = '#7395AE';
@@ -30,23 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
     ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
-
     ///////////
 
     /////////// NEXT PIECE CANVAS //////////
-
     nextCtx.rect(0, 0, nextCanvas.width, nextCanvas.height);
     nextCtx.fillStyle = '#001f3f'
     nextCtx.fill();
-
     ///////////
 
     /////////// HOLD PIECE CANVAS //////////
-
     holdCtx.rect(0, 0, holdCanvas.width, holdCanvas.height);
     holdCtx.fillStyle = '#001f3f'
     holdCtx.fill();
-
     ///////////
 
     // const piece = new Piece(game);
@@ -67,8 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
             game.toggleGameStart();
             game.start();
         } else if (e.keyCode === 16) {
-            // hold piece
             game.holdPiece();
+        } else if (e.keyCode === 80) {
+            game.toggleGamePause();
         }
         // else if (e.keyCode === 32) {
         //     game.piece.fastDrop();
