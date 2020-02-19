@@ -208,6 +208,17 @@ class Piece {
             [this.shape, this.holdShape] = [this.holdShape, this.shape];
 
             this.game.drawPiece(this.shape, this.pos);
+
+            let collisionFactor = 1;
+            while (this.board.detectCollision(this)) {
+                this.pos.x += collisionFactor;
+            
+                if (collisionFactor > 0) {
+                    collisionFactor = -(collisionFactor + 1);
+                } else {
+                    collisionFactor = -(collisionFactor + (-1));
+                }
+            }
         }
     }
 
