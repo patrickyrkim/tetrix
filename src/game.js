@@ -1,5 +1,6 @@
 import Board from "./board";
 import Piece from './piece';
+// import { nextAndHoldShapes } from './next_and_hold_shapes';
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -48,7 +49,19 @@ class Game {
 
             // console.log(time, currentTime);
 
+            // if (this.piece.nextShape[0].includes(3)) {
+            //     // this.drawNextPiece(this.piece.nextShape, { x: 2, y: 2 });
+            //     this.unDrawPreviousShape(this.piece.shape, { x: 2, y: 2 });
+            // } else if (this.piece.nextShape[0].includes(2)) {
+            //     // this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 1 });
+            //     this.unDrawPreviousShape(this.piece.shape, { x: 1.5, y: 1 });
+            // } else {
+            //     // this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 2 });
+            //     this.unDrawPreviousShape(this.piece.shape, { x: 1.5, y: 2 });
+            // }
+
             this.unDrawPreviousShape(this.piece.shape);
+
             this.piece.update(deltaTime);
             this.draw();
             // requestAnimationFrame(this.update);  
@@ -142,7 +155,19 @@ class Game {
             // this.unDrawPreviousShape();
             this.drawNextPiece(this.board.nextPieceBoard(this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 })
             // this.drawNextPiece(this.piece.nextShape, { x: this.piece.nextShape[0].length / 2, y: 1 });
-            this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
+
+            // if (this.piece.nextShape[0].includes(3)) {
+            //     this.drawNextPiece(this.piece.nextShape, { x: 2, y: 2 });
+            // } else if (this.piece.nextShape[0].includes(2)) {
+            //     this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 1 });
+            //     // this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
+            // } else {
+            //     this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 2 });
+            //     // this.drawNextPiece(this.piece.nextShape, { x: 1, y: 2 });
+            // }
+
+            this.drawNextPiece(this.piece.nextShape, { x: 2, y: 1 });
+            // this.drawNextPiece(nextAndHoldShapes(this.piece.nextShape), { x: 1, y: 1 });
             
             this.drawNextPiece(this.board.nextPieceBoard(this.holdCanvas.width / 20, this.holdCanvas.height / 20), { x: 0, y: 0 })
         }
@@ -207,13 +232,25 @@ class Game {
        shape.forEach((row, i) => {
             row.forEach((value, j) => {
                 this.nextCtx.fillStyle = '#001f3f';
-                this.nextCtx.fillRect(j + 1, i + 1, 1, 1);
+                this.nextCtx.fillRect(j + 2, i + 1, 1, 1);
                 this.nextCtx.strokeStyle = "#001f3f";
                 this.nextCtx.lineWidth = 0.1;
-                this.nextCtx.strokeRect(j + 1, i + 1, 1, 1);
+                this.nextCtx.strokeRect(j + 2, i + 1, 1, 1);
             })
         })
     }
+
+    // unDrawPreviousShape(shape, adjustPos) {
+    //    shape.forEach((row, i) => {
+    //         row.forEach((value, j) => {
+    //             this.nextCtx.fillStyle = "#001f3f";
+    //             this.nextCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+    //             this.nextCtx.strokeStyle = "#001f3f";
+    //             this.nextCtx.lineWidth = 0.1;
+    //             this.nextCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+    //         })
+    //     })
+    // }
 
     ///// HOLD /////
     drawHoldPiece(nextShape, adjustPos) {
@@ -234,10 +271,10 @@ class Game {
         shape.forEach((row, i) => {
             row.forEach((value, j) => {
                 this.holdCtx.fillStyle = '#001f3f';
-                this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
+                this.holdCtx.fillRect(j + 2, i + 1, 1, 1);
                 this.holdCtx.strokeStyle = "#001f3f";
                 this.holdCtx.lineWidth = 0.1;
-                this.holdCtx.strokeRect(j + 1, i + 1, 1, 1);
+                this.holdCtx.strokeRect(j + 2, i + 1, 1, 1);
             })
         })
     }
