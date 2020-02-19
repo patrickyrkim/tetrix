@@ -74,6 +74,7 @@ class Piece {
             this.restart();
             this.score += this.board.clearFilledRow();
             // updateScore();
+            this.game.updateScore(this.score);
         }
     }
 

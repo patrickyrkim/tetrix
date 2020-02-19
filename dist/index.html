@@ -9,9 +9,9 @@
 </head>
 <body>
     <header><h1>TETRIX</h1></header>
-    <!-- <div class="menu-contents">
+    <!-- <div class="intro-contents">
         <div>
-            click to start
+            <button onclick="toggleHidden()">Click to Start</button>
         </div>
     </div> -->
     <div class="game-contents">
@@ -45,15 +45,12 @@
                 <div id="score"></div>
             </div> -->
             <canvas id="game-canvas" width="200" height="400"></canvas>
-            <!-- <canvas id="game-canvas" width="300" height="600"></canvas> -->
-            <script type="application/javascript" src="./main.js"></script>
+            <!-- <script type="application/javascript" src="./main.js"></script> -->
         </div>
         <div class="col-right">
-            <!-- <div>MORE INFO</div> -->
             <div class="next-container">
                 <div>NEXT</div>     
                 <canvas id="next-canvas" width="120" height="120"></canvas>
-                <!-- <div id="next">-</div> -->
             </div>
             <div class="hold-container">
                 <div>HOLD</div>
@@ -62,5 +59,18 @@
         </div>
     </div>
     <!-- <footer>Copyright &copy; 2020 Tetrix by Patrick</footer> -->
+
+<script type="application/javascript" src="./main.js"></script>
+<!-- <script type="application/javascript" src="./main.js">
+    function toggleHidden() {
+            var introScreen = document.getElementById('intro-contents');
+            var gameScreen = document.getElementById('game-contents');
+
+            if (gameScreen.style.display === 'none') {
+                introScreen.style.display === 'none';
+                gameScreen.style.display === 'block';
+            }
+        }
+</script> -->
 </body>
 </html>

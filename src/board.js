@@ -53,7 +53,8 @@ class Board {
     }
 
     clearFilledRow() {
-        let rowCounter = 1;
+        // let rowCounter = 1;
+        let scoreCount = 10;
         let score = 0;
 
         loop1: 
@@ -71,7 +72,8 @@ class Board {
                 this.newBoard.unshift(row);
                 i += 1;
 
-                score += rowCounter * 10;
+                // score += rowCounter * 10;
+                score += scoreCount;
             }
             return score;
     }

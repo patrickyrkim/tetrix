@@ -177,14 +177,15 @@ class Game {
                     // this.ctx.fillStyle = 'red';
                     this.ctx.fillStyle = this.pieceColors[value];
                     this.ctx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
-                    this.ctx.strokeStyle = 'black';
-                    this.ctx.lineWidth = 0.1;
-                    this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
-                } else {
-                    this.ctx.strokeStyle = 'gray';
-                    this.ctx.lineWidth = 0.1;
-                    this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
-                }
+                    // this.ctx.strokeStyle = 'black';
+                    // this.ctx.lineWidth = 0.1;
+                    // this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                } 
+                // else {
+                //     // this.ctx.strokeStyle = 'gray';
+                //     // this.ctx.lineWidth = 0.05;
+                //     // this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                // }
             })
         })
     }
@@ -195,33 +196,22 @@ class Game {
                 if (value !== 0) {
                     this.nextCtx.fillStyle = this.pieceColors[value];
                     this.nextCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
-                    this.nextCtx.strokeStyle = "black";
-                    this.nextCtx.lineWidth = 0.1;
-                    this.nextCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    // this.nextCtx.strokeStyle = "black";
+                    // this.nextCtx.lineWidth = 0.1;
+                    // this.nextCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
                 }
             })
         })
     }
-
-    // unDrawPreviousShape() {
-    //     this.board.nextPieceBoard((this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 }).forEach((row, i) => {
-    //         row.forEach((value, j) => {
-    //             this.nextCtx.fillStyle = '#001f3f';
-    //             // this.nextCtx.rect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
-    //             this.nextCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
-    //             this.nextCtx.fill()
-    //         })
-    //     })
-    // }
 
     unDrawPreviousShape(shape) {
        shape.forEach((row, i) => {
             row.forEach((value, j) => {
                 this.nextCtx.fillStyle = '#001f3f';
                 this.nextCtx.fillRect(j + 1, i + 1, 1, 1);
-                this.nextCtx.strokeStyle = "#001f3f";
-                this.nextCtx.lineWidth = 0.1;
-                this.nextCtx.strokeRect(j + 1, i + 1, 1, 1);
+                // this.nextCtx.strokeStyle = "#001f3f";
+                // this.nextCtx.lineWidth = 0.1;
+                // this.nextCtx.strokeRect(j + 1, i + 1, 1, 1);
             })
         })
     }
@@ -233,9 +223,9 @@ class Game {
                 if (value !== 0) {
                     this.holdCtx.fillStyle = this.pieceColors[value];
                     this.holdCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
-                    this.holdCtx.strokeStyle = "black";
-                    this.holdCtx.lineWidth = 0.1;
-                    this.holdCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    // this.holdCtx.strokeStyle = "black";
+                    // this.holdCtx.lineWidth = 0.1;
+                    // this.holdCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
                 }
             })
         })
@@ -246,9 +236,9 @@ class Game {
             row.forEach((value, j) => {
                 this.holdCtx.fillStyle = '#001f3f';
                 this.holdCtx.fillRect(j + 1, i + 1, 1, 1);
-                this.holdCtx.strokeStyle = "#001f3f";
-                this.holdCtx.lineWidth = 0.1;
-                this.holdCtx.strokeRect(j + 1, i + 1, 1, 1);
+                // this.holdCtx.strokeStyle = "#001f3f";
+                // this.holdCtx.lineWidth = 0.1;
+                // this.holdCtx.strokeRect(j + 1, i + 1, 1, 1);
             })
         })
     }
@@ -261,9 +251,9 @@ class Game {
                 if (value !== 0) {
                     this.ctx.fillStyle = '#001f3f';
                     this.ctx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
-                    this.ctx.strokeStyle = "#001f3f";
-                    this.ctx.lineWidth = 0.1;
-                    this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    // this.ctx.strokeStyle = "#001f3f";
+                    // this.ctx.lineWidth = 0.1;
+                    // this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
                 }
             })
         })

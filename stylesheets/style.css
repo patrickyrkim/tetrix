@@ -35,11 +35,13 @@ footer {
     padding: 80px 0 10px;
 }
 
-.menu-contents {
+.intro-contents {
     display: none;
+    /* display: block; */
 }
 
 .game-contents {
+    /* display: none; */
     display: flex;
     justify-content: space-between;
 }

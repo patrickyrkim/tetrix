@@ -97,6 +97,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // function toggleHidden() {
+    //     var introScreen = document.getElementById('intro-contents');
+    //     var gameScreen = document.getElementById('game-contents');
+
+    //     if (gameScreen.style.display === 'none') {
+    //         introScreen.style.display === 'none';
+    //         gameScreen.style.display === 'block';
+    //     }
+    // }
+
+    // document.addEventListener('click', (e) => {
+    //     toggleHidden();
+    // })
+
     // const restartButton = document.getElementById('restart-button');
     // restartButton.addEventListener('click', () => {
     //     game.toggleGameStart();
