@@ -75,6 +75,11 @@ class Board {
                 // score += rowCounter * 10;
                 score += scoreCount;
             }
+
+            if (score === 40) {
+                console.log('tetrix');
+            }
+
             return score;
     }
 

@@ -63,6 +63,7 @@ footer {
 .score-container {
     padding: 0 140px 20px;
     font-size: 20px;
+    font-weight: bold;
 }
 
 #score, #next {
@@ -74,7 +75,16 @@ footer {
     color: white;   
 }
 
+#score {
+    border: 5px solid white;
+}
+
 .next-container, .hold-container {
     padding: 0 140px 20px;
     font-size: 20px;
+    font-weight: bold;
+}
+
+.instructions > span {
+    font-weight: bold;
 }

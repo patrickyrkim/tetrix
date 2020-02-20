@@ -16,8 +16,16 @@
     </div> -->
     <div class="game-contents">
         <div class="col-left">
+            <div class="hold-container">
+                <div>HOLD</div>
+                <canvas id="hold-canvas" width="120" height="120"></canvas>
+            </div>
+            <div class="score-container">
+                <div>SCORE</div>
+                <div id="score">-</div>
+            </div>
             <div class="instructions">
-                INSTRUCTIONS: 
+                <span>INSTRUCTIONS:</span>
                 <br>
                 PRESS ENTER TO START
                 <br>
@@ -29,13 +37,17 @@
                 <br>
                 UP ARROW - rotate
                 <br>
+                SPACE - hard drop
+                <br>
+                SHIFT - hold
+                <br>
                 P - pause
             </div>
             <br>
-            <div class="score-container">
+            <!-- <div class="score-container">
                 <div>SCORE</div>
                 <div id="score">-</div>
-            </div>
+            </div> -->
             <!-- <div class="restart">
                 <button id="restart-button">RESTART</button>
             </div> -->
@@ -52,10 +64,10 @@
                 <div>NEXT</div>     
                 <canvas id="next-canvas" width="120" height="120"></canvas>
             </div>
-            <div class="hold-container">
+            <!-- <div class="hold-container">
                 <div>HOLD</div>
                 <canvas id="hold-canvas" width="120" height="120"></canvas>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- <footer>Copyright &copy; 2020 Tetrix by Patrick</footer> -->
