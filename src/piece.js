@@ -7,6 +7,8 @@ const GAMESTATE = {
     MENU: 3,
 }
 
+const SHAPESYMBOL = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
+
 class Piece {
     constructor(game) {
         this.game = game;
@@ -16,9 +18,12 @@ class Piece {
             y: 0
         };
         this.shape = null;
+        // this.shape = tetrisShapes(SHAPESYMBOL[Math.floor(Math.random() * SHAPESYMBOL.length)]);
         // this.shuffledShapes = null;
 
         this.nextShape = null;
+        // this.nextShape = tetrisShapes(SHAPESYMBOL[Math.floor(Math.random() * SHAPESYMBOL.length)]);
+
         this.holdShape = null;
         this.intermediateShape = null;
 

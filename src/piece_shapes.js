@@ -12,7 +12,7 @@
 //             [0, 0, 2, 0],
 //             [0, 0, 2, 0],
 //         ];
-//     } else if (shape = 'O') {
+//     } else if (shape === 'O') {
 //         return [
 //             [3, 3],
 //             [3, 3],
@@ -59,7 +59,7 @@ export function tetrisShapes(shape) {
       [0, 2, 0, 0],
       [0, 2, 0, 0]
     ];
-  } else if ((shape = "O")) {
+  } else if (shape === "O") {
     return [
     //   [0, 0, 0, 0],
       [3, 3],
