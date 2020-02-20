@@ -207,8 +207,9 @@ class Game {
                     this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
                 } else {
                     this.ctx.strokeStyle = 'gray';
-                    this.ctx.lineWidth = 0.05;
-                    this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    this.ctx.lineWidth = 0.1;
+                    // this.ctx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                    this.ctx.strokeRect(j, i, 1, 1);
                 }
             })
         })
