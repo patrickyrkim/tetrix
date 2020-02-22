@@ -54,6 +54,8 @@ class Piece {
     moveDown() {
         this.pos.y += 1;
 
+        document.getElementById("score-tetrix").hidden = true;
+
         if (this.board.detectCollision(this)) {
             this.pos.y -= 1;
             this.board.lockPieceOnBoard(this);
@@ -186,8 +188,6 @@ class Piece {
 
     ///// HOLD PIECE
     handleHoldShape() {
-        // this.holdShape = this.shape;
-        // this.restart();
 
         if (this.holdShape === null) {
             this.holdShape = this.shape;
@@ -260,6 +260,8 @@ class Piece {
 
     update(deltaTime) {
         this.dropCounter += deltaTime;
+
+        // document.getElementById("score-tetrix").hidden = true;
 
         if (this.dropCounter > this.dropTime) {
             this.moveDown();

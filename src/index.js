@@ -111,6 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    var scoreForty = document.getElementById("score-tetrix");
+    scoreForty.hidden = true;
+    
+
     // function toggleHidden() {
     //     var introScreen = document.getElementById('intro-contents');
     //     var gameScreen = document.getElementById('game-contents');

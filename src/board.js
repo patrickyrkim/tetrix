@@ -77,10 +77,22 @@ class Board {
             }
 
             if (score === 40) {
-                console.log('tetrix');
+                // console.log('tetrix');
+                this.toggleHidden();
             }
 
             return score;
+    }
+
+    toggleHidden() {
+        var scoreForty = document.getElementById('score-tetrix');
+
+        if (scoreForty.hidden === true) {
+            scoreForty.hidden = false;
+        } 
+        // else {
+        //     scoreForty.style.display === 'none';
+        // }
     }
 
     lockPieceOnBoard(piece) {
