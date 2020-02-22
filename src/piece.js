@@ -31,6 +31,10 @@ class Piece {
 
         this.dropCounter = 0;
         this.dropTime = 1000;
+
+        // if ((this.score / 10) % 10 === 0) {
+        //     this.droptime += 1000;
+        // }
         
         this.restart();
     }
@@ -65,6 +69,10 @@ class Piece {
             this.score += this.board.clearFilledRow();
             // updateScore();
             this.game.updateScore(this.score);
+
+            if ((this.score / 10) % 10 === 0) {
+              this.droptime += 1000;
+            }
         }
 
         this.dropCounter = 0;
@@ -82,6 +90,10 @@ class Piece {
             this.score += this.board.clearFilledRow();
             // updateScore();
             this.game.updateScore(this.score);
+            
+            if ((this.score / 10) % 10 === 0) {
+              this.droptime += 1000;
+            }
         }
     }
 

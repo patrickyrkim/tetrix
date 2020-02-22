@@ -49,8 +49,28 @@ class Game {
         let currentTime = 0;
         // this.currentTime = 0;
         this.update = (time = 0) => {
-            const deltaTime = time - currentTime;
-            currentTime = time;
+            // const deltaTime = (time) - currentTime;
+            // currentTime = time;
+
+            //// LEVELS ////
+            let deltaTime;
+            if (this.piece.score >= 0 && this.piece.score < 100) {
+                deltaTime = time - currentTime;
+                currentTime = time;
+            } else if (this.piece.score >= 100 && this.piece.score < 200) {
+                deltaTime = (time + 25) - currentTime;
+                currentTime = time;
+            } else if (this.piece.score >= 100 && this.piece.score < 200) {
+                deltaTime = (time + 50) - currentTime;
+                currentTime = time;
+            } else if (this.piece.score >= 100 && this.piece.score < 200) {
+                deltaTime = (time + 75) - currentTime;
+                currentTime = time;
+            } else if (this.piece.score >= 100 && this.piece.score < 200) {
+                deltaTime = (time + 100) - currentTime;
+                currentTime = time;
+            }
+            ///////////////
 
             // console.log(time, currentTime);
 
@@ -61,7 +81,13 @@ class Game {
             this.unDrawThirdPreviousShape(this.piece.nextSecondShape);
             // this.unDrawThirdPreviousShape(this.piece.shape);
 
+            // if ((this.score / 10) % 10 === 0) {
+            //   deltaTime += 1000;
+            // }
+
             this.piece.update(deltaTime);
+
+
             this.draw();
             // requestAnimationFrame(this.update);  
             if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.GAMEOVER || this.gamestate === GAMESTATE.MENU) {
