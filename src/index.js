@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextCanvas = document.getElementById('next-canvas');
     const nextCtx = nextCanvas.getContext('2d');
 
+    const nextSecondCanvas = document.getElementById("second-next-canvas");
+    const nextSecondCtx = nextCanvas.getContext('2d');
+
+    const nextThirdCanvas = document.getElementById("third-next-canvas");
+    const nextThirdCtx = nextCanvas.getContext('2d');
+
     const holdCanvas = document.getElementById('hold-canvas');
     const holdCtx = holdCanvas.getContext('2d');
 
@@ -65,6 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     nextCtx.fill();
     ///////////
 
+    nextSecondCtx.rect(0, 0, nextSecondCanvas.width, nextSecondCanvas.height);
+    nextSecondCtx.fillStyle = '#001f3f';
+    nextSecondCtx.fill();
+
+    nextThirdCtx.rect(0, 0, nextThirdCanvas.width, nextThirdCanvas.height);
+    nextThirdCtx.fillStyle = '#001f3f';
+    nextThirdCtx.fill();
+
     /////////// HOLD PIECE CANVAS //////////
     holdCtx.rect(0, 0, holdCanvas.width, holdCanvas.height);
     holdCtx.fillStyle = '#001f3f'
@@ -74,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // const piece = new Piece(game);
     // const board = new Board(GAME_WIDTH, GAME_HEIGHT);
     // const game = new Game(canvas);
-    const game = new Game(canvas, nextCanvas, holdCanvas);
+    const game = new Game(canvas, nextCanvas, holdCanvas, nextSecondCanvas, nextThirdCanvas);
 
     document.addEventListener('keydown', e => {
         if (e.keyCode === 37) {

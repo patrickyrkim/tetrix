@@ -75,6 +75,10 @@ footer {
     color: white;   
 }
 
+#second-next-canvas, #third-next-canvas {
+    background: #001f3f;
+}
+
 #score {
     border: 5px solid white;
 }

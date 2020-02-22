@@ -10,18 +10,23 @@ const GAMESTATE = {
 }
 
 class Game {
-    constructor(canvas, nextCanvas, holdCanvas) {
+    constructor(canvas, nextCanvas, holdCanvas, nextSecondCanvas, nextThirdCanvas) {
         this.canvas = canvas;
         this.nextCanvas = nextCanvas;
+        this.nextSecondCanvas = nextSecondCanvas;
+        this.nextThirdCanvas = nextThirdCanvas;
         this.holdCanvas = holdCanvas;
 
         this.ctx = canvas.getContext('2d');
         this.nextCtx = nextCanvas.getContext('2d');
+        this.nextSecondCtx = nextSecondCanvas.getContext('2d');
+        this.nextThirdCtx = nextThirdCanvas.getContext("2d");
         this.holdCtx = holdCanvas.getContext('2d');
 
         this.ctx.scale(20, 20);
-        // this.ctx.scale(30, 30);
         this.nextCtx.scale(20, 20);
+        this.nextSecondCtx.scale(20, 20);
+        this.nextThirdCtx.scale(20, 20);
         this.holdCtx.scale(20, 20)
 
         this.gamestate = GAMESTATE.MENU;
@@ -49,18 +54,12 @@ class Game {
 
             // console.log(time, currentTime);
 
-            // if (this.piece.nextShape[0].includes(3)) {
-            //     // this.drawNextPiece(this.piece.nextShape, { x: 2, y: 2 });
-            //     this.unDrawPreviousShape(this.piece.shape, { x: 2, y: 2 });
-            // } else if (this.piece.nextShape[0].includes(2)) {
-            //     // this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 1 });
-            //     this.unDrawPreviousShape(this.piece.shape, { x: 1.5, y: 1 });
-            // } else {
-            //     // this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 2 });
-            //     this.unDrawPreviousShape(this.piece.shape, { x: 1.5, y: 2 });
-            // }
-
             this.unDrawPreviousShape(this.piece.shape);
+            
+            this.unDrawSecondPreviousShape(this.piece.nextShape);
+            // this.unDrawSecondPreviousShape(this.piece.shape);
+            this.unDrawThirdPreviousShape(this.piece.nextSecondShape);
+            // this.unDrawThirdPreviousShape(this.piece.shape);
 
             this.piece.update(deltaTime);
             this.draw();
@@ -117,15 +116,6 @@ class Game {
     }
 
     draw() {
-        // this.ctx.fillStyle = 'gray';
-        // // this.ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-        // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        // // this.ctx.strokeStyle = 'black';
-        // // this.ctx.strokeRect(0, 0, 20, 20)
-
-        // this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
-        // this.drawPiece(this.piece.shape, this.piece.pos);
-
         if (this.gamestate === GAMESTATE.MENU) {
             this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
             // this.ctx.fillStyle = '#5D5C61';
@@ -152,22 +142,13 @@ class Game {
             this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
             this.drawPiece(this.piece.shape, this.piece.pos);
 
-            // this.unDrawPreviousShape();
             this.drawNextPiece(this.board.nextPieceBoard(this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 })
-            // this.drawNextPiece(this.piece.nextShape, { x: this.piece.nextShape[0].length / 2, y: 1 });
-
-            // if (this.piece.nextShape[0].includes(3)) {
-            //     this.drawNextPiece(this.piece.nextShape, { x: 2, y: 2 });
-            // } else if (this.piece.nextShape[0].includes(2)) {
-            //     this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 1 });
-            //     // this.drawNextPiece(this.piece.nextShape, { x: 1, y: 1 });
-            // } else {
-            //     this.drawNextPiece(this.piece.nextShape, { x: 1.5, y: 2 });
-            //     // this.drawNextPiece(this.piece.nextShape, { x: 1, y: 2 });
-            // }
+            this.drawSecondNextPiece(this.board.nextPieceBoard(this.nextSecondCanvas.width / 20, this.nextSecondCanvas.height / 20), { x: 0, y: 0 })
+            this.drawThirdNextPiece(this.board.nextPieceBoard(this.nextThirdCanvas.width / 20, this.nextThirdCanvas.height / 20), { x: 0, y: 0 })
 
             this.drawNextPiece(this.piece.nextShape, { x: 2, y: 1 });
-            // this.drawNextPiece(nextAndHoldShapes(this.piece.nextShape), { x: 1, y: 1 });
+            this.drawSecondNextPiece(this.piece.nextSecondShape, { x: 2, y: 1 });
+            this.drawThirdNextPiece(this.piece.nextThirdShape, { x: 2, y: 1 });
             
             this.drawNextPiece(this.board.nextPieceBoard(this.holdCanvas.width / 20, this.holdCanvas.height / 20), { x: 0, y: 0 })
         }
@@ -240,6 +221,61 @@ class Game {
             })
         })
     }
+
+    ///// SECOND PIECE 
+    drawSecondNextPiece(nextShape, adjustPos) {
+        nextShape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                if (value !== 0) {
+                    this.nextSecondCtx.fillStyle = this.pieceColors[value];
+                    this.nextSecondCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
+                    this.nextSecondCtx.strokeStyle = "black";
+                    this.nextSecondCtx.lineWidth = 0.1;
+                    this.nextSecondCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                }
+            })
+        })
+    }
+
+    unDrawSecondPreviousShape(shape) {
+       shape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                this.nextSecondCtx.fillStyle = '#001f3f';
+                this.nextSecondCtx.fillRect(j + 2, i + 1, 1, 1);
+                this.nextSecondCtx.strokeStyle = "#001f3f";
+                this.nextSecondCtx.lineWidth = 0.1;
+                this.nextSecondCtx.strokeRect(j + 2, i + 1, 1, 1);
+            })
+        })
+    }
+
+    ////// THIRD PIECE
+    drawThirdNextPiece(nextShape, adjustPos) {
+        nextShape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                if (value !== 0) {
+                    this.nextThirdCtx.fillStyle = this.pieceColors[value];
+                    this.nextThirdCtx.fillRect(j + adjustPos.x, i + adjustPos.y, 1, 1)
+                    this.nextThirdCtx.strokeStyle = "black";
+                    this.nextThirdCtx.lineWidth = 0.1;
+                    this.nextThirdCtx.strokeRect(j + adjustPos.x, i + adjustPos.y, 1, 1);
+                }
+            })
+        })
+    }
+
+    unDrawThirdPreviousShape(shape) {
+       shape.forEach((row, i) => {
+            row.forEach((value, j) => {
+                this.nextThirdCtx.fillStyle = '#001f3f';
+                this.nextThirdCtx.fillRect(j + 2, i + 1, 1, 1);
+                this.nextThirdCtx.strokeStyle = "#001f3f";
+                this.nextThirdCtx.lineWidth = 0.1;
+                this.nextThirdCtx.strokeRect(j + 2, i + 1, 1, 1);
+            })
+        })
+    }
+    //////
 
     // unDrawPreviousShape(shape, adjustPos) {
     //    shape.forEach((row, i) => {
