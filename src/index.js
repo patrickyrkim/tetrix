@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = '#98B4D4';
     ctx.fill();
 
-    ctx.font = '18px arial';
-    ctx.fillStyle = 'white';
+    // ctx.font = '18px arial';
+    ctx.font = "16px monospace";
+    ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
     // ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
     ctx.fillText("Press ENTER To Start", canvas.width / 2, 120);

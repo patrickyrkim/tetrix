@@ -56,7 +56,6 @@ class Game {
             //// LEVELS ////
             // currentTime = 0;
             let deltaTime;
-            // let deltaTime = time - currentTime;
             if (this.piece.score >= 0 && this.piece.score < 100) {
                 deltaTime = time - currentTime;
                 currentTime = time;
