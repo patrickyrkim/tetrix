@@ -47,27 +47,45 @@ class Game {
         this.piece = new Piece(this);
 
         let currentTime = 0;
+        // let currentTime;
         // this.currentTime = 0;
         this.update = (time = 0) => {
             // const deltaTime = (time) - currentTime;
             // currentTime = time;
 
             //// LEVELS ////
+            // currentTime = 0;
             let deltaTime;
+            // let deltaTime = time - currentTime;
             if (this.piece.score >= 0 && this.piece.score < 100) {
                 deltaTime = time - currentTime;
                 currentTime = time;
             } else if (this.piece.score >= 100 && this.piece.score < 200) {
-                deltaTime = (time + 25) - currentTime;
+                deltaTime = (time) - currentTime + 25;
                 currentTime = time;
-            } else if (this.piece.score >= 100 && this.piece.score < 200) {
-                deltaTime = (time + 50) - currentTime;
+            } else if (this.piece.score >= 200 && this.piece.score < 300) {
+                deltaTime = (time) - currentTime + 50;
                 currentTime = time;
-            } else if (this.piece.score >= 100 && this.piece.score < 200) {
-                deltaTime = (time + 75) - currentTime;
+            } else if (this.piece.score >= 300 && this.piece.score < 400) {
+                deltaTime = (time) - currentTime + 75;
                 currentTime = time;
-            } else if (this.piece.score >= 100 && this.piece.score < 200) {
-                deltaTime = (time + 100) - currentTime;
+            } else if (this.piece.score >= 400 && this.piece.score < 500) {
+                deltaTime = (time) - currentTime + 100;
+                currentTime = time;
+            } else if (this.piece.score >= 500 && this.piece.score < 600) {
+                deltaTime = (time) - currentTime + 125;
+                currentTime = time;
+            } else if (this.piece.score >= 600 && this.piece.score < 700) {
+                deltaTime = (time) - currentTime + 150;
+                currentTime = time;
+            } else if (this.piece.score >= 700 && this.piece.score < 800) {
+                deltaTime = (time) - currentTime + 175;
+                currentTime = time;
+            } else if (this.piece.score >= 800 && this.piece.score < 900) {
+                deltaTime = (time) - currentTime + 200;
+                currentTime = time;
+            } else {
+                deltaTime = (time) - currentTime + 225;
                 currentTime = time;
             }
             ///////////////

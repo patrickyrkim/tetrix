@@ -43,7 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.font = '18px arial';
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
-    ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
+    // ctx.fillText("Press ENTER To Start", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Press ENTER To Start", canvas.width / 2, 120);
+    ctx.fillText("LEFT - move left", canvas.width / 2, 160);
+    ctx.fillText("RIGHT - move right", canvas.width / 2, 180);
+    ctx.fillText("DOWN - move down", canvas.width / 2, 200);
+    ctx.fillText("UP - rotate", canvas.width / 2, 220);
+    ctx.fillText("SPACE - hard drop", canvas.width / 2, 240);
+    ctx.fillText("SHIFT - hold", canvas.width / 2, 260);
+    ctx.fillText("P - pause", canvas.width / 2, 280);
     
     // function gamestateText() {
     //     if (game.gamestate === GAMESTATE.MENU) {
