@@ -58,6 +58,10 @@ class Piece {
     moveDown() {
         this.pos.y += 1;
 
+        // while (!this.board.detectCollision(this)) {
+        //     let guideShape = this.shape;
+        // }
+
         document.getElementById("score-tetrix").hidden = true;
 
         if (this.board.detectCollision(this)) {
