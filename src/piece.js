@@ -9,6 +9,8 @@ const GAMESTATE = {
 
 const SHAPESYMBOL = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
 
+const isStorage = 'undefined' !== typeof localStorage;
+
 class Piece {
     constructor(game) {
         this.game = game;
@@ -28,6 +30,7 @@ class Piece {
         // this.intermediateShape = null;
 
         this.score = 0;
+        this.highscore = 0;
 
         this.dropCounter = 0;
         this.dropTime = 1000;
@@ -74,9 +77,9 @@ class Piece {
             // updateScore();
             this.game.updateScore(this.score);
 
-            if ((this.score / 10) % 10 === 0) {
-              this.droptime += 1000;
-            }
+            // if ((this.score / 10) % 10 === 0) {
+            //   this.droptime += 1000;
+            // }
         }
 
         this.dropCounter = 0;
@@ -95,9 +98,9 @@ class Piece {
             // updateScore();
             this.game.updateScore(this.score);
             
-            if ((this.score / 10) % 10 === 0) {
-              this.droptime += 1000;
-            }
+            // if ((this.score / 10) % 10 === 0) {
+            //   this.droptime += 1000;
+            // }
         }
     }
 
@@ -263,8 +266,24 @@ class Piece {
             if (this.game.gamestate === GAMESTATE.PLAY) {
                 this.game.gamestate = GAMESTATE.GAMEOVER;
                 alert('GAME OVER! Press ENTER to Restart Game');
+                // return;
+
+                if (this.score > this.highscore) {
+                    this.highscore = this.score;
+                    let highscore = this.highscore;
+                    localStorage.setItem('1', this.highscore);
+                    // console.log(localStorage.getItem('1'));
+                    document.getElementById('high-scores').innerText = `${highscore}`
+                }
+
                 return;
             }
+
+            // if (this.score > this.highscore) {
+            //     this.highscore = this.score;
+            //     localStorage.setItem('1', this.highscore);
+            //     document.getElementById('high-scores').innerText = `${this.highscore}`
+            // }
             
             // this.board.forEach((row) => row.fill(0));
             this.board.clearRow();
