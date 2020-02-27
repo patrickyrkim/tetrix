@@ -185,6 +185,10 @@ class Game {
             this.drawPiece(this.board.newBoard, { x: 0, y: 0 });
             this.drawPiece(this.piece.shape, this.piece.pos);
 
+            ///// GUIDE SHAPE /////
+            // this.drawPiece(this.piece.guideShape, this.piece.guidePos);
+            /////
+
             this.drawNextPiece(this.board.nextPieceBoard(this.nextCanvas.width / 20, this.nextCanvas.height / 20), { x: 0, y: 0 })
             this.drawSecondNextPiece(this.board.nextPieceBoard(this.nextSecondCanvas.width / 20, this.nextSecondCanvas.height / 20), { x: 0, y: 0 })
             this.drawThirdNextPiece(this.board.nextPieceBoard(this.nextThirdCanvas.width / 20, this.nextThirdCanvas.height / 20), { x: 0, y: 0 })

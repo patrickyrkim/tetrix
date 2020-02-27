@@ -1,4 +1,5 @@
 import { tetrisShapes } from './piece_shapes';
+import Guide from './guide_piece';
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -20,6 +21,11 @@ class Piece {
             y: 0
         };
         this.shape = null;
+        // this.guideShape = null;
+        // this.guidePos = {
+        //     x: 0,
+        //     y: 0
+        // }
 
         this.nextShape = null;
 
@@ -31,6 +37,7 @@ class Piece {
 
         this.score = 0;
         this.highscore = 0;
+        this.leaderboard = [0];
 
         this.dropCounter = 0;
         this.dropTime = 1000;
@@ -38,6 +45,8 @@ class Piece {
         // if ((this.score / 10) % 10 === 0) {
         //     this.droptime += 1000;
         // }
+
+        // this.guide = new Guide(game);
         
         this.restart();
     }
@@ -242,6 +251,21 @@ class Piece {
     }
     /////
 
+    ///// GUIDE PIECE
+    // handleGuideShape() {
+    //     this.guideShape = this.shape;
+
+    //     while (!this.board.detectCollision(this)) {
+    //         this.guidePos.y += 1;
+    //     }
+
+    //     if (this.board.detectCollision(this)) {
+    //         this.guidePos.y -= 1;
+    //         this.board.lockPieceOnBoard(this);
+    //     }
+    // }
+    /////
+
     restart() {
         // // const shapes = 'TIOJLZS';
         // const shapes = ['T', 'I', 'O', 'J', 'L', 'Z', 'S'];
@@ -251,9 +275,14 @@ class Piece {
 
         this.handleCurrentShape();
 
+        // this.guideShape = this.shape;
+        
         this.handleNextShape();
         this.handleSecondShape();
         this.handleThirdShape();
+
+        // this.handleGuideShape();
+        // this.guide.handleGuideShape();
 
         this.updateNextPiece(this.nextShape);
         this.updateSecondNextPiece(this.nextSecondShape);
@@ -270,6 +299,7 @@ class Piece {
 
                 if (this.score > this.highscore) {
                     this.highscore = this.score;
+                    this.leaderboard.unshift(this.highscore);
                     let highscore = this.highscore;
                     localStorage.setItem('1', this.highscore);
                     // console.log(localStorage.getItem('1'));
