@@ -122,7 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var scoreForty = document.getElementById("score-tetrix");
     scoreForty.hidden = true;
-    
+
+    // let menu = document.getElementById('menu').style.display
+    // menu.hidden = true
+    // function toggleMenuButton() {
+    //     if (menu.hidden === true) {
+    //         menu.hidden = false;
+    //     }
+    // }
 
     // function toggleHidden() {
     //     var introScreen = document.getElementById('intro-contents');
