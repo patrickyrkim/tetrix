@@ -1,7 +1,7 @@
 # tetrix
 
 ## Live
-Play the game [here](https://youngrokkim2017.github.io/tetrix/)
+Play the game [here](https://patrickyrkim.github.io/tetrix/)
 
 ## Language and Technologies
 * Vanilla Javascript
